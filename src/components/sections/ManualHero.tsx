@@ -9,7 +9,7 @@ export const ManualHero: React.FC = () => {
   return (
     <section 
       className="relative py-16 sm:py-24 text-white transition-colors border-b border-stone-800 overflow-hidden"
-      style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
+      style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
     >
       {/* Subtle Technical Grid Background */}
       <div className="absolute inset-0 bg-manual-grid opacity-20 pointer-events-none" />
