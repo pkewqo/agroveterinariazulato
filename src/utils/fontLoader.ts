@@ -7,6 +7,9 @@ export interface GoogleFontOption {
 
 export const POPULAR_GOOGLE_FONTS: GoogleFontOption[] = [
   { family: 'Montserrat', category: 'sans-serif', recommendedFor: 'headline', weights: [400, 600, 700, 800, 900] },
+  { family: 'Playfair Display', category: 'serif', recommendedFor: 'headline', weights: [400, 600, 700, 900] },
+  { family: 'Cormorant Garamond', category: 'serif', recommendedFor: 'headline', weights: [400, 600, 700] },
+  { family: 'Cinzel', category: 'serif', recommendedFor: 'headline', weights: [600, 700, 800] },
   { family: 'Inter', category: 'sans-serif', recommendedFor: 'body', weights: [300, 400, 500, 600, 700] },
   { family: 'Plus Jakarta Sans', category: 'sans-serif', recommendedFor: 'both', weights: [400, 500, 600, 700, 800] },
   { family: 'Oswald', category: 'sans-serif', recommendedFor: 'headline', weights: [400, 500, 600, 700] },
@@ -16,7 +19,6 @@ export const POPULAR_GOOGLE_FONTS: GoogleFontOption[] = [
   { family: 'Space Grotesk', category: 'sans-serif', recommendedFor: 'headline', weights: [400, 500, 600, 700] },
   { family: 'Outfit', category: 'sans-serif', recommendedFor: 'both', weights: [400, 500, 600, 700] },
   { family: 'DM Sans', category: 'sans-serif', recommendedFor: 'body', weights: [400, 500, 700] },
-  { family: 'Playfair Display', category: 'serif', recommendedFor: 'headline', weights: [400, 600, 700, 900] },
   { family: 'Syne', category: 'display', recommendedFor: 'headline', weights: [600, 700, 800] },
   { family: 'Unbounded', category: 'display', recommendedFor: 'headline', weights: [600, 700, 800, 900] },
   { family: 'JetBrains Mono', category: 'monospace', recommendedFor: 'mono', weights: [400, 500, 700] },

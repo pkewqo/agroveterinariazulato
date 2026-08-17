@@ -12,6 +12,8 @@ interface BrandContextType {
   setIsExportModalOpen: (open: boolean) => void;
   activeSection: string;
   setActiveSection: (section: string) => void;
+  viewMode: 'tactile' | 'editorial';
+  setViewMode: (mode: 'tactile' | 'editorial') => void;
   
   // Updaters
   updateBrandField: <K extends keyof BrandState>(field: K, value: BrandState[K]) => void;
@@ -45,6 +47,7 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('overview');
+  const [viewMode, setViewMode] = useState<'tactile' | 'editorial'>('tactile');
 
   // Save to local storage on change
   useEffect(() => {
@@ -174,6 +177,8 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setIsExportModalOpen,
         activeSection,
         setActiveSection,
+        viewMode,
+        setViewMode,
         updateBrandField,
         updateColor,
         updateFont,
