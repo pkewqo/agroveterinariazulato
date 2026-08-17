@@ -1,10 +1,10 @@
 import React from 'react';
 import { useBrand } from '../context/BrandContext';
-import { Printer, Download, Sparkles, BookOpen } from 'lucide-react';
+import { Printer, Download } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 export const ManualHeader: React.FC = () => {
-  const { setIsExportModalOpen, viewMode, setViewMode } = useBrand();
+  const { setIsExportModalOpen } = useBrand();
 
   const sections = [
     { id: 'colors', label: '01. Cores' },
@@ -15,25 +15,20 @@ export const ManualHeader: React.FC = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-40 w-full backdrop-blur-md transition-colors no-print ${
-      viewMode === 'tactile' 
-        ? 'bg-stone-950/90 text-stone-100 border-b border-stone-800' 
-        : 'bg-white/95 text-stone-900'
-    }`}>
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-sm text-stone-900 border-b border-stone-200 no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         
         {/* Left: Brand Identification */}
         <div className="flex items-center gap-4 min-w-0">
-          <div className="h-8 flex items-center shrink-0">
-            <BrandLogo 
-              variant="horizontal" 
-              colorMode={viewMode === 'tactile' ? 'mono-white' : 'color-light'} 
-              size="sm" 
-            />
+          <div className="h-9 flex items-center shrink-0">
+            <BrandLogo variant="normal" colorMode="color" size="sm" />
           </div>
-          <div className="hidden md:block">
-            <span className="text-xs font-bold uppercase tracking-widest block">
+          <div className="hidden md:block border-l border-stone-300 pl-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-stone-900 block">
               Manual de Identidade Visual
+            </span>
+            <span className="text-[10px] text-stone-500 font-mono">
+              30 Anos de História • Edição Oficial 2026
             </span>
           </div>
         </div>
@@ -44,68 +39,30 @@ export const ManualHeader: React.FC = () => {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
-                viewMode === 'tactile'
-                  ? 'text-stone-400 hover:text-stone-100'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
+              className="text-xs font-semibold text-stone-600 hover:text-stone-900 transition-colors uppercase tracking-wider"
             >
               {s.label}
             </a>
           ))}
         </nav>
 
-        {/* Right: View Mode Toggle & Action Buttons */}
+        {/* Right: Print / Export */}
         <div className="flex items-center gap-3 shrink-0">
-          
-          {/* View Mode Toggle Button */}
-          <div className="hidden sm:flex items-center bg-stone-900 border border-stone-800 p-0.5">
-            <button
-              onClick={() => setViewMode('tactile')}
-              className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono transition-all cursor-pointer ${
-                viewMode === 'tactile'
-                  ? 'bg-emerald-800 text-white font-bold'
-                  : 'text-stone-400 hover:text-stone-200'
-              }`}
-              title="Modo Mockup Tátil em Linho Petróleo e Couro Gravado"
-            >
-              <Sparkles size={13} />
-              <span>Mostruário Tátil</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('editorial')}
-              className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono transition-all cursor-pointer ${
-                viewMode === 'editorial'
-                  ? 'bg-stone-100 text-stone-900 font-bold'
-                  : 'text-stone-400 hover:text-stone-200'
-              }`}
-              title="Modo Editorial Minimalista (Plano em Branco)"
-            >
-              <BookOpen size={13} />
-              <span>Editorial Clean</span>
-            </button>
-          </div>
-
           <button
             onClick={() => setIsExportModalOpen(true)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
-              viewMode === 'tactile'
-                ? 'bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-800'
-                : 'bg-stone-100 hover:bg-stone-200 text-stone-800'
-            }`}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold transition-colors cursor-pointer border border-stone-300"
           >
             <Download size={14} />
-            <span className="hidden sm:inline">Exportar</span>
+            <span className="hidden sm:inline">Exportar Tokens</span>
           </button>
 
           <button
             onClick={() => window.print()}
             title="Imprimir ou Salvar Manual em PDF"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold transition-colors cursor-pointer"
           >
             <Printer size={14} />
-            <span>Imprimir</span>
+            <span>Imprimir Manual</span>
           </button>
         </div>
 

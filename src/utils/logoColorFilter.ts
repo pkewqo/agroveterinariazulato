@@ -1,9 +1,10 @@
 import { hexToRgb } from './colorMath';
 
 interface RecolorOptions {
-  symbolColor: string; // HEX
-  textColor: string;   // HEX
-  mode: 'color-light' | 'color-dark' | 'mono-black' | 'mono-white';
+  douradoColor: string;          // HEX for Z, Bull and Text
+  verdeMedioColor: string;       // HEX for AV monogram
+  mode: 'color' | 'mono-black' | 'mono-white';
+  monoBlackHex?: string;         // optional custom black (defaults to #2B2B2B or #000000)
   symbolOnly?: boolean;
 }
 
@@ -26,8 +27,8 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-export async function recolorLogo(src: string, options: RecolorOptions): Promise<string> {
-  const cacheKey = `${src}_${options.symbolColor}_${options.textColor}_${options.mode}_${options.symbolOnly}`;
+export async function recolorNewLogo(src: string, options: RecolorOptions): Promise<string> {
+  const cacheKey = `${src}_${options.douradoColor}_${options.verdeMedioColor}_${options.mode}_${options.monoBlackHex}_${options.symbolOnly}`;
   if (canvasCache.has(cacheKey)) {
     return canvasCache.get(cacheKey)!;
   }
@@ -44,17 +45,19 @@ export async function recolorLogo(src: string, options: RecolorOptions): Promise
     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imgData.data;
 
-    const symRgb = hexToRgb(options.symbolColor);
-    const textRgb = options.mode === 'color-dark' 
-      ? { r: 255, g: 255, b: 255 } 
-      : hexToRgb(options.textColor);
+    const goldRgb = hexToRgb(options.douradoColor);
+    const greenRgb = hexToRgb(options.verdeMedioColor);
+    const blackRgb = options.monoBlackHex ? hexToRgb(options.monoBlackHex) : { r: 43, g: 43, b: 43 };
 
     let minX = canvas.width, minY = canvas.height, maxX = 0, maxY = 0;
     let hasOpaque = false;
 
+    // The text in the new logo starts around the bottom 40% of the canvas
+    const textStartY = Math.floor(canvas.height * 0.58);
+
     for (let i = 0; i < data.length; i += 4) {
       const a = data[i + 3];
-      if (a < 5) continue; // transparent pixel
+      if (a < 8) continue; // transparent pixel
 
       const pxIndex = i / 4;
       const x = pxIndex % canvas.width;
@@ -64,31 +67,34 @@ export async function recolorLogo(src: string, options: RecolorOptions): Promise
       const g = data[i + 1];
       const b = data[i + 2];
 
+      if (options.symbolOnly && y >= textStartY) {
+        data[i + 3] = 0; // hide text in symbol only view
+        continue;
+      }
+
       if (options.mode === 'mono-black') {
-        data[i] = 0;
-        data[i + 1] = 0;
-        data[i + 2] = 0;
+        data[i] = blackRgb.r;
+        data[i + 1] = blackRgb.g;
+        data[i + 2] = blackRgb.b;
       } else if (options.mode === 'mono-white') {
         data[i] = 255;
         data[i + 1] = 255;
         data[i + 2] = 255;
       } else {
-        // Green symbol detection (distinct green channel)
-        const isGreenSymbol = (g > r + 8 && g > b + 8) || (g > 60 && r < 85 && b < 75);
+        // Color Mode:
+        // Detect if pixel belongs to the Green "AV" monogram
+        // In the new logo, AV has prominent green channel (g > r + 5 && g > b + 5) or is clearly green
+        const isGreenAV = (g > r + 6 && g > b + 6) || (g > 60 && r < 120 && b < 80);
 
-        if (isGreenSymbol) {
-          data[i] = symRgb.r;
-          data[i + 1] = symRgb.g;
-          data[i + 2] = symRgb.b;
+        if (isGreenAV) {
+          data[i] = greenRgb.r;
+          data[i + 1] = greenRgb.g;
+          data[i + 2] = greenRgb.b;
         } else {
-          if (options.symbolOnly) {
-            data[i + 3] = 0; // hide text
-            continue;
-          } else {
-            data[i] = textRgb.r;
-            data[i + 1] = textRgb.g;
-            data[i + 2] = textRgb.b;
-          }
+          // Gold / Ocre part ("Z", Bull head silhouette, "AGROVETERINÁRIA ZULATO" text)
+          data[i] = goldRgb.r;
+          data[i + 1] = goldRgb.g;
+          data[i + 2] = goldRgb.b;
         }
       }
 
@@ -103,7 +109,7 @@ export async function recolorLogo(src: string, options: RecolorOptions): Promise
 
     ctx.putImageData(imgData, 0, 0);
 
-    // If symbolOnly or autocropping bounds found, crop to fit tightly and center
+    // If symbolOnly, crop tightly to symbol bounds
     if (options.symbolOnly && hasOpaque && maxX > minX && maxY > minY) {
       const cropWidth = maxX - minX + 1;
       const cropHeight = maxY - minY + 1;

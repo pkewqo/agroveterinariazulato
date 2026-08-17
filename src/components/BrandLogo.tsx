@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useBrand } from '../context/BrandContext';
-import { recolorLogo } from '../utils/logoColorFilter';
+import { recolorNewLogo } from '../utils/logoColorFilter';
 
 export interface BrandLogoProps {
-  variant?: 'horizontal' | 'vertical' | 'symbol';
-  colorMode?: 'color-light' | 'color-dark' | 'mono-black' | 'mono-white' | 'custom';
-  symbolColor?: string;
-  textColor?: string;
+  variant?: 'normal' | 'symbol';
+  colorMode?: 'color' | 'mono-black' | 'mono-white';
+  douradoColor?: string;
+  verdeMedioColor?: string;
+  monoBlackHex?: string;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom';
   customHeight?: number;
@@ -14,10 +15,11 @@ export interface BrandLogoProps {
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
-  variant = 'horizontal',
-  colorMode = 'color-light',
-  symbolColor,
-  textColor,
+  variant = 'normal',
+  colorMode = 'color',
+  douradoColor,
+  verdeMedioColor,
+  monoBlackHex,
   className = '',
   size = 'md',
   customHeight,
@@ -26,24 +28,21 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const { brand } = useBrand();
   const [renderedSrc, setRenderedSrc] = useState<string>('');
 
-  const srcToUse = variant === 'vertical' || variant === 'symbol'
-    ? brand.logos.verticalUrl
-    : brand.logos.horizontalUrl;
+  const srcToUse = brand.logos.transparentUrl;
 
-  const effectiveSymbolColor = symbolColor || brand.colors.primary.hex;
-  const effectiveTextColor = textColor || brand.colors.secondary.hex;
+  const effectiveDourado = douradoColor || brand.colors.dourado.hex;
+  const effectiveVerdeMedio = verdeMedioColor || brand.colors.verdeMedio.hex;
+  const effectiveMonoBlack = monoBlackHex || brand.colors.pretoComplementar.hex;
 
   useEffect(() => {
     let isMounted = true;
 
-    const modeToUse = colorMode === 'custom' ? 'color-light' : colorMode;
-    const isSymbolOnly = variant === 'symbol';
-
-    recolorLogo(srcToUse, {
-      symbolColor: effectiveSymbolColor,
-      textColor: effectiveTextColor,
-      mode: modeToUse,
-      symbolOnly: isSymbolOnly,
+    recolorNewLogo(srcToUse, {
+      douradoColor: effectiveDourado,
+      verdeMedioColor: effectiveVerdeMedio,
+      monoBlackHex: effectiveMonoBlack,
+      mode: colorMode,
+      symbolOnly: variant === 'symbol',
     }).then(resultDataUrl => {
       if (isMounted) {
         setRenderedSrc(resultDataUrl);
@@ -53,18 +52,18 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [srcToUse, effectiveSymbolColor, effectiveTextColor, colorMode, variant]);
+  }, [srcToUse, effectiveDourado, effectiveVerdeMedio, effectiveMonoBlack, colorMode, variant]);
 
   // Size styling
   const sizeClasses = customHeight
     ? ''
     : size === 'sm'
-      ? 'max-h-7 max-w-[140px]'
+      ? 'max-h-8 max-w-[120px]'
       : size === 'md'
-        ? variant === 'vertical' ? 'max-h-24 max-w-[160px]' : 'max-h-12 max-w-[240px]'
+        ? variant === 'symbol' ? 'max-h-20 max-w-[120px]' : 'max-h-24 max-w-[170px]'
         : size === 'lg'
-          ? variant === 'vertical' ? 'max-h-36 max-w-[220px]' : 'max-h-20 max-w-[340px]'
-          : variant === 'vertical' ? 'max-h-48 max-w-[280px]' : 'max-h-28 max-w-[480px]';
+          ? variant === 'symbol' ? 'max-h-28 max-w-[160px]' : 'max-h-36 max-w-[240px]'
+          : variant === 'symbol' ? 'max-h-36 max-w-[200px]' : 'max-h-48 max-w-[320px]';
 
   return (
     <div 

@@ -6,7 +6,7 @@ export const ManualStationery: React.FC = () => {
   const { brand } = useBrand();
 
   return (
-    <section id="stationery" className="py-20 bg-white">
+    <section id="stationery" className="py-20 bg-white border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         
         {/* Section Title */}
@@ -45,8 +45,14 @@ export const ManualStationery: React.FC = () => {
                 className="p-8 flex flex-col justify-between aspect-[9/5] min-h-[220px] bg-stone-50"
               >
                 <div className="flex justify-between items-start">
-                  <BrandLogo variant="horizontal" colorMode="color-light" size="sm" />
-                  <span className="text-[9px] font-mono font-bold text-emerald-800 uppercase tracking-wider bg-emerald-100/60 px-2 py-0.5">
+                  <BrandLogo variant="normal" colorMode="color" size="sm" />
+                  <span 
+                    className="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5"
+                    style={{ 
+                      backgroundColor: `${brand.colors.dourado.hex}30`,
+                      color: brand.colors.verdeEscuro.hex 
+                    }}
+                  >
                     30 anos de história!
                   </span>
                 </div>
@@ -58,12 +64,15 @@ export const ManualStationery: React.FC = () => {
                   <p className="text-xs text-stone-600 font-medium">
                     Médico Veterinário & Responsável Técnico
                   </p>
-                  <p className="text-[11px] font-mono text-emerald-800">
+                  <p 
+                    className="text-[11px] font-mono font-bold"
+                    style={{ color: brand.colors.verdeMedio.hex }}
+                  >
                     CRMV-SP 18.420 • Nutrição & Sanidade Animal
                   </p>
                 </div>
 
-                <div className="pt-2 flex justify-between items-center text-[10px] font-mono text-stone-600 border-t border-stone-200/60">
+                <div className="pt-2 flex justify-between items-center text-[10px] font-mono text-stone-600 border-t border-stone-200">
                   <span>{brand.socialHandles.location}</span>
                   <span className="font-bold">{brand.socialHandles.phone}</span>
                 </div>
@@ -76,23 +85,26 @@ export const ManualStationery: React.FC = () => {
                 Verso (Assinatura Institucional)
               </span>
               <div 
-                className="p-8 flex flex-col justify-between aspect-[9/5] min-h-[220px]"
-                style={{ backgroundColor: brand.colors.neutralDark.hex }}
+                className="p-8 flex flex-col justify-between aspect-[9/5] min-h-[220px] transition-colors"
+                style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
               >
                 <div className="flex justify-between items-center">
-                  <span className="text-[9px] font-mono tracking-widest text-emerald-400 font-bold uppercase">
+                  <span 
+                    className="text-[9px] font-mono tracking-widest font-bold uppercase"
+                    style={{ color: brand.colors.dourado.hex }}
+                  >
                     ★ 30 anos de história!
                   </span>
-                  <span className="text-[9px] font-mono tracking-widest text-stone-400 uppercase">
+                  <span className="text-[9px] font-mono tracking-widest text-emerald-200/70 uppercase">
                     Dracena - SP
                   </span>
                 </div>
 
                 <div className="flex flex-col items-center justify-center">
-                  <BrandLogo variant="vertical" colorMode="color-dark" />
+                  <BrandLogo variant="normal" colorMode="color" />
                 </div>
 
-                <div className="text-center text-[9px] font-mono text-stone-400">
+                <div className="text-center text-[9px] font-mono text-emerald-200/70">
                   {brand.socialHandles.location} • Tel: {brand.socialHandles.phone}
                 </div>
               </div>
@@ -116,23 +128,34 @@ export const ManualStationery: React.FC = () => {
           <div className="max-w-3xl mx-auto bg-stone-50 p-10 sm:p-14 space-y-12">
             
             {/* Letterhead Header */}
-            <div className="flex justify-between items-start pb-6 border-b-2" style={{ borderColor: brand.colors.primary.hex }}>
+            <div 
+              className="flex justify-between items-start pb-6 border-b-2" 
+              style={{ borderColor: brand.colors.verdeEscuro.hex }}
+            >
               <div>
-                <BrandLogo variant="horizontal" colorMode="color-light" size="sm" />
-                <p className="text-[10px] font-mono font-bold text-emerald-800 mt-1 uppercase">
+                <BrandLogo variant="normal" colorMode="color" size="sm" />
+                <p 
+                  className="text-[10px] font-mono font-bold mt-1 uppercase"
+                  style={{ color: brand.colors.verdeMedio.hex }}
+                >
                   30 anos de história! • {brand.category}
                 </p>
               </div>
               <div className="text-right text-[10px] font-mono text-stone-600 space-y-0.5">
                 <p className="font-bold text-stone-900 text-xs">{brand.brandName}</p>
                 <p>{brand.socialHandles.location}</p>
-                <p className="font-bold text-emerald-900">WhatsApp / Tel: {brand.socialHandles.phone}</p>
+                <p 
+                  className="font-bold"
+                  style={{ color: brand.colors.verdeEscuro.hex }}
+                >
+                  WhatsApp / Tel: {brand.socialHandles.phone}
+                </p>
               </div>
             </div>
 
             {/* Letterhead Dummy Body */}
             <div className="space-y-4 text-xs text-stone-700 leading-relaxed min-h-[140px]">
-              <div className="flex justify-between text-[11px] font-semibold text-stone-900 pb-2">
+              <div className="flex justify-between text-[11px] font-semibold text-stone-900 pb-2 border-b border-stone-200">
                 <span>DESTINATÁRIO: Agropecuária & Produtores Rurais Associados</span>
                 <span>DATA: 17 de Agosto de 2026</span>
               </div>
@@ -153,7 +176,7 @@ export const ManualStationery: React.FC = () => {
             </div>
 
             {/* Letterhead Footer */}
-            <div className="pt-6 flex justify-between items-end text-[10px] text-stone-500 font-mono">
+            <div className="pt-6 flex justify-between items-end text-[10px] text-stone-500 font-mono border-t border-stone-200">
               <div>
                 <p className="font-bold text-stone-900">Dr. Marcos Zulato</p>
                 <p>CRMV-SP 18.420 • Responsável Técnico</p>

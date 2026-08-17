@@ -23,15 +23,13 @@ export const ExportModal: React.FC = () => {
 
   // 1. CSS Variables Code
   const cssVariablesCode = `:root {
-  /* ${brand.brandName} - Design Tokens */
-  --brand-primary: ${brand.colors.primary.hex};
-  --brand-secondary: ${brand.colors.secondary.hex};
-  --brand-accent: ${brand.colors.accent.hex};
-  --brand-neutral-dark: ${brand.colors.neutralDark.hex};
-  --brand-neutral-light: ${brand.colors.neutralLight.hex};
-  --brand-surface: ${brand.colors.surface.hex};
+  /* ${brand.brandName} - Cores Oficiais */
+  --brand-dourado: ${brand.colors.dourado.hex};
+  --brand-verde-medio: ${brand.colors.verdeMedio.hex};
+  --brand-verde-escuro: ${brand.colors.verdeEscuro.hex};
+  --brand-preto-complementar: ${brand.colors.pretoComplementar.hex};
 
-  /* Typography */
+  /* Tipografia */
   --font-headline: '${brand.typography.headline.family}', sans-serif;
   --font-body: '${brand.typography.body.family}', sans-serif;
   --font-mono: '${brand.typography.mono.family}', monospace;
@@ -44,11 +42,10 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          primary: '${brand.colors.primary.hex}',
-          secondary: '${brand.colors.secondary.hex}',
-          accent: '${brand.colors.accent.hex}',
-          dark: '${brand.colors.neutralDark.hex}',
-          light: '${brand.colors.neutralLight.hex}',
+          dourado: '${brand.colors.dourado.hex}',
+          verdeMedio: '${brand.colors.verdeMedio.hex}',
+          verdeEscuro: '${brand.colors.verdeEscuro.hex}',
+          preto: '${brand.colors.pretoComplementar.hex}',
         }
       },
       fontFamily: {
@@ -120,7 +117,7 @@ module.exports = {
             </div>
             <div>
               <h3 className="text-base font-bold text-stone-100">Exportação de Tokens Gráficos</h3>
-              <p className="text-xs text-stone-400">Variáveis CSS, Tailwind, JSON e impressão de manual</p>
+              <p className="text-xs text-stone-400">Variáveis CSS, Tailwind, JSON e impressão oficial</p>
             </div>
           </div>
 

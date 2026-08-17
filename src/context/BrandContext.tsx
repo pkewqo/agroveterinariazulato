@@ -12,15 +12,12 @@ interface BrandContextType {
   setIsExportModalOpen: (open: boolean) => void;
   activeSection: string;
   setActiveSection: (section: string) => void;
-  viewMode: 'tactile' | 'editorial';
-  setViewMode: (mode: 'tactile' | 'editorial') => void;
   
   // Updaters
   updateBrandField: <K extends keyof BrandState>(field: K, value: BrandState[K]) => void;
   updateColor: (colorKey: keyof BrandState['colors'], hex: string, name?: string) => void;
   updateFont: (type: 'headline' | 'body' | 'mono', family: string) => void;
-  updateLogoVariant: (variant: 'horizontal' | 'vertical' | 'symbol') => void;
-  updateCustomLogo: (type: 'horizontal' | 'vertical', dataUrl: string) => void;
+  updateLogoVariant: (variant: 'normal' | 'symbol') => void;
   updateToneSlider: (sliderId: string, value: number) => void;
   loadPreset: (presetId: string) => void;
   resetToDefault: () => void;
@@ -29,7 +26,7 @@ interface BrandContextType {
 
 const BrandContext = createContext<BrandContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY = 'brandguide_studio_state_v1';
+const LOCAL_STORAGE_KEY = 'brandguide_studio_zulato_v2';
 
 export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [brand, setBrand] = useState<BrandState>(() => {
@@ -47,7 +44,6 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('overview');
-  const [viewMode, setViewMode] = useState<'tactile' | 'editorial'>('tactile');
 
   // Save to local storage on change
   useEffect(() => {
@@ -68,11 +64,10 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   // Set CSS Variables dynamically on document root for live styling
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty('--brand-primary', brand.colors.primary.hex);
-    root.style.setProperty('--brand-secondary', brand.colors.secondary.hex);
-    root.style.setProperty('--brand-accent', brand.colors.accent.hex);
-    root.style.setProperty('--brand-neutral-dark', brand.colors.neutralDark.hex);
-    root.style.setProperty('--brand-neutral-light', brand.colors.neutralLight.hex);
+    root.style.setProperty('--brand-dourado', brand.colors.dourado.hex);
+    root.style.setProperty('--brand-verde-medio', brand.colors.verdeMedio.hex);
+    root.style.setProperty('--brand-verde-escuro', brand.colors.verdeEscuro.hex);
+    root.style.setProperty('--brand-preto', brand.colors.pretoComplementar.hex);
     root.style.setProperty('--brand-font-headline', `"${brand.typography.headline.family}", sans-serif`);
     root.style.setProperty('--brand-font-body', `"${brand.typography.body.family}", sans-serif`);
     root.style.setProperty('--brand-font-mono', `"${brand.typography.mono.family}", monospace`);
@@ -110,22 +105,12 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }));
   };
 
-  const updateLogoVariant = (variant: 'horizontal' | 'vertical' | 'symbol') => {
+  const updateLogoVariant = (variant: 'normal' | 'symbol') => {
     setBrand(prev => ({
       ...prev,
       logos: {
         ...prev.logos,
         activeVariant: variant,
-      },
-    }));
-  };
-
-  const updateCustomLogo = (type: 'horizontal' | 'vertical', dataUrl: string) => {
-    setBrand(prev => ({
-      ...prev,
-      logos: {
-        ...prev.logos,
-        [`${type}Url`]: dataUrl,
       },
     }));
   };
@@ -177,13 +162,10 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setIsExportModalOpen,
         activeSection,
         setActiveSection,
-        viewMode,
-        setViewMode,
         updateBrandField,
         updateColor,
         updateFont,
         updateLogoVariant,
-        updateCustomLogo,
         updateToneSlider,
         loadPreset,
         resetToDefault,

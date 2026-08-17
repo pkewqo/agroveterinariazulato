@@ -1,4 +1,4 @@
-export interface ColorDefinition {
+export interface ColorToken {
   id: string;
   name: string;
   role: string;
@@ -6,24 +6,40 @@ export interface ColorDefinition {
   description: string;
 }
 
-export interface FontConfig {
+export interface BrandColors {
+  dourado: ColorToken;          // #D5B876 - Tipografia, Z e Touro
+  verdeMedio: ColorToken;       // #50723B - Monograma AV
+  verdeEscuro: ColorToken;      // #283D2B - Fundo Institucional Principal
+  pretoComplementar: ColorToken; // #2B2B2B - Fundo Secundário / Complementar / P&B
+}
+
+export interface TypographyToken {
   family: string;
   weights: number[];
   category: 'sans-serif' | 'serif' | 'display' | 'monospace';
   usage: string;
 }
 
-export interface BrandToneSlider {
+export interface BrandLogos {
+  transparentUrl: string;
+  activeVariant: 'normal' | 'symbol';
+  clearSpaceRatio: number;
+  minDigitalSizePx: number;
+  minPrintSizeMm: number;
+}
+
+export interface ToneSlider {
   id: string;
   labelLeft: string;
   labelRight: string;
-  value: number; // 0 to 100
+  value: number;
   description: string;
 }
 
-export interface BrandDoDont {
-  doText: string;
-  dontText: string;
+export interface VoiceTone {
+  sliders: ToneSlider[];
+  rules: Array<{ doText: string; dontText: string }>;
+  keywords: string[];
 }
 
 export interface BrandState {
@@ -35,39 +51,15 @@ export interface BrandState {
   vision: string;
   archetype: string;
   archetypeDescription: string;
-  
-  logos: {
-    horizontalUrl: string;
-    verticalUrl: string;
-    symbolUrl?: string;
-    activeVariant: 'horizontal' | 'vertical' | 'symbol';
-    clearSpaceRatio: number; // e.g. 1.0 (X)
-    minDigitalSizePx: number;
-    minPrintSizeMm: number;
-  };
-
-  colors: {
-    primary: ColorDefinition;
-    secondary: ColorDefinition;
-    accent: ColorDefinition;
-    neutralDark: ColorDefinition;
-    neutralLight: ColorDefinition;
-    surface: ColorDefinition;
-  };
-
+  logos: BrandLogos;
+  colors: BrandColors;
   typography: {
-    headline: FontConfig;
-    body: FontConfig;
-    mono: FontConfig;
+    headline: TypographyToken;
+    body: TypographyToken;
+    mono: TypographyToken;
     customSampleText: string;
   };
-
-  toneOfVoice: {
-    sliders: BrandToneSlider[];
-    rules: BrandDoDont[];
-    keywords: string[];
-  };
-
+  toneOfVoice: VoiceTone;
   socialHandles: {
     instagram: string;
     website: string;

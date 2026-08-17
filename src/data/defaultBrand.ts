@@ -11,56 +11,41 @@ export const ZULATO_BRAND: BrandState = {
   archetypeDescription: 'Uma marca sólida, tradicional e altamente técnica, que transmite a segurança de mais de 3 décadas de história no campo.',
   
   logos: {
-    horizontalUrl: '/assets/logo-horizontal.png',
-    verticalUrl: '/assets/logo-vertical.png',
-    activeVariant: 'horizontal',
+    transparentUrl: '/assets/new-logo-transparent.png',
+    activeVariant: 'normal',
     clearSpaceRatio: 1.0,
     minDigitalSizePx: 32,
     minPrintSizeMm: 18,
   },
 
   colors: {
-    primary: {
-      id: 'primary',
-      name: 'Verde Pasto Zulato',
-      role: 'Cor Primária / Marca',
-      hex: '#2E6930',
-      description: 'Representa a fertilidade da terra, saúde vegetal e a tradição verdejante do agronegócio.',
+    dourado: {
+      id: 'dourado',
+      name: 'Dourado Trigo',
+      role: 'Tipografia & Touro / Letra Z',
+      hex: '#D5B876',
+      description: 'Cor principal da tipografia "Agroveterinária Zulato", da letra Z e da silhueta do touro.',
     },
-    secondary: {
-      id: 'secondary',
-      name: 'Grafite Carvão',
-      role: 'Cor Secundária / Tipografia',
-      hex: '#232323',
-      description: 'Transmite robustez estrutural, estabilidade mecânica e seriedade institucional.',
+    verdeMedio: {
+      id: 'verdeMedio',
+      name: 'Verde Folha',
+      role: 'Monograma AV (Símbolo)',
+      hex: '#50723B',
+      description: 'Cor do monograma AV, representando a vitalidade da lavoura e a sanidade das pastagens.',
     },
-    accent: {
-      id: 'accent',
-      name: 'Dourado Safra',
-      role: 'Acento / Destaque',
-      hex: '#D97706',
-      description: 'Simboliza a colheita, prosperidade econômica e os grãos de alta nutrição animal.',
+    verdeEscuro: {
+      id: 'verdeEscuro',
+      name: 'Verde Floresta',
+      role: 'Fundo Institucional Principal',
+      hex: '#283D2B',
+      description: 'Tom escuro institucional para fundos nobres, embalagens técnicas e contraste principal.',
     },
-    neutralDark: {
-      id: 'neutralDark',
-      name: 'Preto Solo Profundo',
-      role: 'Fundo Escuro / Contraste',
-      hex: '#141713',
-      description: 'Base sólida para materiais escuros, embalagens premium e contraste de alta legibilidade.',
-    },
-    neutralLight: {
-      id: 'neutralLight',
-      name: 'Névoa Matinal',
-      role: 'Fundo Claro / Superfície',
-      hex: '#F6F8F4',
-      description: 'Tonalidade clara e suave para fundos de relatórios, receituários e leitura limpa.',
-    },
-    surface: {
-      id: 'surface',
-      name: 'Branco Puro',
-      role: 'Base Neutra',
-      hex: '#FFFFFF',
-      description: 'Espaço em branco essencial para manter a clareza e limpeza visual dos materiais.',
+    pretoComplementar: {
+      id: 'pretoComplementar',
+      name: 'Preto Carvão',
+      role: 'Fundo Secundário & Cor Complementar',
+      hex: '#2B2B2B',
+      description: 'Cor complementar de apoio para fundos secundários, materiais monocromáticos e detalhes técnicos.',
     },
   },
 
@@ -69,19 +54,19 @@ export const ZULATO_BRAND: BrandState = {
       family: 'Montserrat',
       weights: [700, 800, 900],
       category: 'sans-serif',
-      usage: 'Títulos de impacto, embalagens de defensivos/suplementos, outdoors e capas de catálogos.',
+      usage: 'Títulos de impacto, embalagens de suplementos, fachadas e catálogos.',
     },
     body: {
       family: 'Plus Jakarta Sans',
       weights: [400, 500, 600, 700],
       category: 'sans-serif',
-      usage: 'Artigos técnicos, bulas, contratos de consultoria, receituários e interface digital.',
+      usage: 'Artigos técnicos, bulas, contratos de consultoria, receituários e comunicação.',
     },
     mono: {
       family: 'JetBrains Mono',
       weights: [400, 600],
       category: 'monospace',
-      usage: 'Códigos de lote, dosagens milimétricas, dados analíticos e tabelas nutricionais.',
+      usage: 'Códigos de lote, dosagens veterinárias, dados analíticos e tabelas nutricionais.',
     },
     customSampleText: 'Agroveterinária Zulato: 30 anos de história e parceria com o produtor rural em Dracena - SP.',
   },
@@ -141,8 +126,8 @@ export const ZULATO_BRAND: BrandState = {
 export const BRAND_PRESETS: BrandPreset[] = [
   {
     id: 'zulato',
-    name: 'Agroveterinária Zulato (30 Anos)',
-    description: '30 anos de história em Dracena - SP • Saúde Animal e Agronegócio.',
+    name: 'Agroveterinária Zulato (Oficial)',
+    description: '30 anos de história em Dracena - SP • Nova Identidade Visual.',
     state: ZULATO_BRAND,
   },
 ];

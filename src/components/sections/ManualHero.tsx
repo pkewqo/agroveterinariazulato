@@ -20,7 +20,10 @@ export const ManualHero: React.FC = () => {
           
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs uppercase font-mono tracking-widest text-emerald-800 font-bold block">
+              <span 
+                className="text-xs uppercase font-mono tracking-widest font-bold block"
+                style={{ color: brand.colors.verdeMedio.hex }}
+              >
                 ★ 30 Anos de História • Guia Oficial de Aplicação
               </span>
               <h1 className="text-4xl sm:text-6xl font-black text-stone-900 tracking-tight leading-[1.05]">
@@ -33,7 +36,7 @@ export const ManualHero: React.FC = () => {
 
             <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
               Com mais de <strong>30 anos de história</strong> em Dracena e região, a <strong>{brand.brandName}</strong> consolida
-              suas diretrizes normativas, proporções matemáticas, critérios cromáticos e tipográficos
+              suas novas diretrizes normativas, proporções matemáticas, critérios cromáticos e tipográficos
               para aplicação consistente em todos os pontos de contato.
             </p>
 
@@ -48,7 +51,7 @@ export const ManualHero: React.FC = () => {
               </div>
               <div>
                 <span className="font-mono text-stone-400 block uppercase">Atendimento</span>
-                <span className="font-bold text-stone-900">18 99653-5452</span>
+                <span className="font-bold text-stone-900">{brand.socialHandles.phone}</span>
               </div>
             </div>
           </div>
@@ -59,11 +62,13 @@ export const ManualHero: React.FC = () => {
               <span className="text-[10px] font-mono text-stone-400 uppercase tracking-widest mb-6">
                 Marca Institucional Oficial
               </span>
-              <BrandLogo variant="horizontal" colorMode="color-light" size="lg" />
-              <div className="w-full mt-8 pt-4 flex justify-between text-[11px] font-mono text-stone-500">
-                <span>Versão Horizontal</span>
-                <span style={{ color: brand.colors.primary.hex }} className="font-bold">
-                  ● Cor Primária: {brand.colors.primary.hex}
+              <BrandLogo variant="normal" colorMode="color" size="lg" />
+              <div className="w-full mt-8 pt-4 flex justify-between text-[11px] font-mono text-stone-500 border-t border-stone-200">
+                <span style={{ color: brand.colors.verdeMedio.hex }} className="font-bold">
+                  ● AV: {brand.colors.verdeMedio.hex}
+                </span>
+                <span style={{ color: brand.colors.dourado.hex }} className="font-bold">
+                  ● Dourado: {brand.colors.dourado.hex}
                 </span>
               </div>
             </div>

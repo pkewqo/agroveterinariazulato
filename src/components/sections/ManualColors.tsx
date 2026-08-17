@@ -1,66 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useBrand } from '../../context/BrandContext';
+import { hexToRgb, rgbToCmyk } from '../../utils/colorMath';
+import { Copy, Check } from 'lucide-react';
 
 export const ManualColors: React.FC = () => {
   const { brand, updateColor } = useBrand();
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  // Standard palette (for light backgrounds)
-  const lightPalette = [
-    {
-      key: 'primary' as const,
-      name: 'Verde Pasto',
-      role: 'Cor Primária (Símbolo)',
-      hex: brand.colors.primary.hex,
-    },
-    {
-      key: 'secondary' as const,
-      name: 'Grafite Carvão',
-      role: 'Cor Secundária (Texto)',
-      hex: brand.colors.secondary.hex,
-    },
-    {
-      key: 'accent' as const,
-      name: 'Dourado Safra',
-      role: 'Acento / Destaque',
-      hex: brand.colors.accent.hex,
-    },
-    {
-      key: 'surface' as const,
-      name: 'Branco Puro',
-      role: 'Fundo / Base',
-      hex: brand.colors.surface.hex,
-    },
-  ];
+  const handleCopy = (text: string, key: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey(null), 1800);
+  };
 
-  // Inverted palette (for dark backgrounds)
-  const darkPalette = [
+  const pantoneRefs: Record<string, string> = {
+    dourado: 'PANTONE 466 C',
+    verdeMedio: 'PANTONE 7741 C',
+    verdeEscuro: 'PANTONE 7743 C',
+    pretoComplementar: 'PANTONE Neutral Black C',
+  };
+
+  const paletteItems = [
     {
-      key: 'primary' as const,
-      name: 'Verde Pasto',
-      role: 'Símbolo Oficial',
-      hex: brand.colors.primary.hex,
+      key: 'dourado' as const,
+      color: brand.colors.dourado,
+      usage: 'Tipografia "Agroveterinária Zulato", Letra Z e Silhueta do Touro.',
     },
     {
-      name: 'Branco Puro',
-      role: 'Tipografia em Fundo Escuro',
-      hex: '#FFFFFF',
+      key: 'verdeMedio' as const,
+      color: brand.colors.verdeMedio,
+      usage: 'Monograma "AV" do símbolo, detalhes de destaque e sanidade vegetal.',
     },
     {
-      key: 'accent' as const,
-      name: 'Dourado Safra',
-      role: 'Acento em Fundo Escuro',
-      hex: brand.colors.accent.hex,
+      key: 'verdeEscuro' as const,
+      color: brand.colors.verdeEscuro,
+      usage: 'Fundo institucional nobre, superfícies de alto contraste e embalagens premium.',
     },
     {
-      key: 'neutralDark' as const,
-      name: 'Preto Solo',
-      role: 'Fundo Escuro Institucional',
-      hex: brand.colors.neutralDark.hex,
+      key: 'pretoComplementar' as const,
+      color: brand.colors.pretoComplementar,
+      usage: 'Cor complementar, fundos secundários, detalhes técnicos e alternativa P&B.',
     },
   ];
 
   return (
-    <section id="colors" className="py-20 bg-white">
+    <section id="colors" className="py-20 bg-white border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Title */}
@@ -72,101 +56,80 @@ export const ManualColors: React.FC = () => {
             Paleta de Cores Institucional
           </h2>
           <p className="text-xs text-stone-500 font-mono">
-            Paleta Padrão (Fundo Claro) & Paleta Inversa (Fundo Escuro)
+            4 Cores Oficiais • Dourado Trigo • Verde Folha • Verde Floresta • Preto Carvão
           </p>
         </div>
 
-        {/* --- 1. PALETA PADRÃO (FUNDO CLARO) --- */}
-        <div className="space-y-6">
-          <div className="space-y-1">
-            <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
-              <span className="font-mono text-stone-400">1.1</span>
-              <span>Paleta Padrão • Aplicação em Fundo Claro</span>
-            </h3>
-            <p className="text-xs text-stone-500">
-              Cores oficiais para papel timbrado, documentos, sinalizações e materiais de fundo claro.
-            </p>
-          </div>
+        {/* Unified 4-Color Swatch Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {paletteItems.map(({ key, color, usage }) => {
+            const rgb = hexToRgb(color.hex);
+            const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+            const pantone = pantoneRefs[key] || 'PANTONE Custom';
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            {lightPalette.map((item, idx) => (
-              <div key={idx} className="space-y-3">
-                {/* Flat Color Block */}
+            return (
+              <div key={key} className="space-y-4 bg-stone-50 p-5 flex flex-col justify-between">
+                
+                {/* Flat Color Swatch (Clickable to change) */}
                 <div 
-                  className="h-28 w-full relative flex items-end p-3 cursor-pointer group"
-                  style={{ backgroundColor: item.hex }}
+                  className="h-32 w-full relative flex items-end p-3 cursor-pointer group shadow-xs transition-colors"
+                  style={{ backgroundColor: color.hex }}
                 >
-                  {item.key && (
-                    <input
-                      type="color"
-                      value={item.hex}
-                      onChange={(e) => updateColor(item.key!, e.target.value)}
-                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                      title={`Clique para alterar a cor ${item.name}`}
-                    />
-                  )}
+                  <input
+                    type="color"
+                    value={color.hex}
+                    onChange={(e) => updateColor(key, e.target.value)}
+                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                    title={`Clique para alterar a cor ${color.name}`}
+                  />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 bg-black/40 text-white">
+                    Editar Cor
+                  </span>
                 </div>
 
-                {/* Minimalist Specs */}
-                <div className="space-y-0.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-stone-900">{item.name}</span>
-                    <span className="text-xs font-mono font-bold text-stone-600 uppercase">{item.hex}</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-stone-400 block">{item.role}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* --- 2. PALETA INVERSA (FUNDO ESCURO) --- */}
-        <div className="space-y-6">
-          <div className="space-y-1">
-            <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
-              <span className="font-mono text-stone-400">1.2</span>
-              <span>Paleta Inversa • Aplicação em Fundo Escuro</span>
-            </h3>
-            <p className="text-xs text-stone-500">
-              Cores calibradas para aplicação sobre fundos escuros, uniformes pretos e materiais noturnos.
-            </p>
-          </div>
-
-          <div 
-            className="p-8 sm:p-10"
-            style={{ backgroundColor: brand.colors.neutralDark.hex }}
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {darkPalette.map((item, idx) => (
-                <div key={idx} className="space-y-3">
-                  {/* Flat Color Block */}
-                  <div 
-                    className="h-28 w-full relative flex items-end p-3 cursor-pointer group"
-                    style={{ backgroundColor: item.hex }}
-                  >
-                    {item.key && (
-                      <input
-                        type="color"
-                        value={item.hex}
-                        onChange={(e) => updateColor(item.key!, e.target.value)}
-                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                        title={`Clique para alterar a cor ${item.name}`}
-                      />
-                    )}
-                  </div>
-
-                  {/* Minimalist Specs for Dark Background */}
+                {/* Info & Usages */}
+                <div className="space-y-3">
                   <div className="space-y-0.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-white">{item.name}</span>
-                      <span className="text-xs font-mono font-bold text-stone-400 uppercase">{item.hex}</span>
+                      <h3 className="text-base font-bold text-stone-900">{color.name}</h3>
+                      <button
+                        onClick={() => handleCopy(color.hex, key)}
+                        className="text-xs font-mono font-bold text-stone-700 hover:text-emerald-700 flex items-center gap-1 cursor-pointer uppercase"
+                        title="Copiar código HEX"
+                      >
+                        {color.hex}
+                        {copiedKey === key ? <Check size={11} className="text-emerald-600" /> : <Copy size={11} className="text-stone-400" />}
+                      </button>
                     </div>
-                    <span className="text-[11px] font-mono text-stone-500 block">{item.role}</span>
+                    <span className="text-[11px] font-mono text-stone-500 block font-semibold">
+                      {color.role}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-stone-600 leading-relaxed min-h-[44px]">
+                    {usage}
+                  </p>
+
+                  {/* Technical Formulas */}
+                  <div className="pt-3 border-t border-stone-200 space-y-1 font-mono text-[11px] text-stone-600">
+                    <div className="flex justify-between">
+                      <span className="text-stone-400">RGB:</span>
+                      <span className="text-stone-800">{rgb.r}, {rgb.g}, {rgb.b}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-400">CMYK:</span>
+                      <span className="text-stone-800">{cmyk.c} / {cmyk.m} / {cmyk.y} / {cmyk.k}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-400">Pantone®:</span>
+                      <span className="text-stone-900 font-bold">{pantone}</span>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+
+              </div>
+            );
+          })}
         </div>
 
       </div>

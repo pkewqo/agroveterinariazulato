@@ -6,7 +6,7 @@ export const ManualLogos: React.FC = () => {
   const { brand } = useBrand();
 
   return (
-    <section id="logos" className="py-20 bg-white">
+    <section id="logos" className="py-20 bg-white border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         
         {/* Section Title */}
@@ -15,193 +15,137 @@ export const ManualLogos: React.FC = () => {
             Seção 02
           </span>
           <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-            Assinaturas da Marca & Variações Oficiais
+            Assinaturas Oficiais da Marca
           </h2>
           <p className="text-xs text-stone-500 font-mono">
-            Horizontal • Vertical • Fundo Institucional • Monocromático
+            Variações Cromáticas • Fundo Claro • Fundo Verde Floresta • Fundo Preto • Monocromático
           </p>
         </div>
 
-        {/* --- 1. HORIZONTAL SIGNATURES --- */}
+        {/* --- 1. PRINCIPAL CHROMATIC VARIATIONS --- */}
         <div className="space-y-6">
           <div className="space-y-1">
             <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
               <span className="font-mono text-stone-400">2.1</span>
-              <span>Assinatura Horizontal (Primária)</span>
+              <span>Assinatura Principal (Variações de Fundo)</span>
             </h3>
             <p className="text-xs text-stone-500">
-              Formato preferencial para fachadas, sinalizações, cabeçalhos de sites e materiais horizontais.
+              Aplicações da marca com fidelidade cromática nos fundos oficiais do sistema visual.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* 1. Horizontal - Color on Light */}
-            <div className="p-6 bg-stone-50 flex flex-col justify-between min-h-[220px]">
+            {/* 1. Color on White Background */}
+            <div className="p-8 bg-stone-50 flex flex-col justify-between min-h-[280px]">
               <span className="text-[10px] font-mono text-stone-500 uppercase tracking-wider">
-                2.1.1 Colorida • Fundo Claro
+                2.1.1 Colorida • Fundo Branco
               </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="horizontal" colorMode="color-light" size="md" />
+              <div className="py-8 flex items-center justify-center">
+                <BrandLogo variant="normal" colorMode="color" size="lg" />
               </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>Símbolo: {brand.colors.primary.hex}</span>
-                <span>Texto: {brand.colors.secondary.hex}</span>
+              <div className="text-[10px] font-mono text-stone-500 pt-2 flex justify-between border-t border-stone-200">
+                <span>AV: {brand.colors.verdeMedio.hex}</span>
+                <span>Z / Texto: {brand.colors.dourado.hex}</span>
               </div>
             </div>
 
-            {/* 2. Horizontal - Color on Dark (White text) */}
+            {/* 2. Color on Forest Green Background */}
             <div 
-              className="p-6 flex flex-col justify-between min-h-[220px]"
-              style={{ backgroundColor: brand.colors.neutralDark.hex }}
+              className="p-8 flex flex-col justify-between min-h-[280px] transition-colors"
+              style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
+            >
+              <span className="text-[10px] font-mono text-emerald-200/80 uppercase tracking-wider">
+                2.1.2 Colorida • Fundo Verde Floresta
+              </span>
+              <div className="py-8 flex items-center justify-center">
+                <BrandLogo variant="normal" colorMode="color" size="lg" />
+              </div>
+              <div className="text-[10px] font-mono text-emerald-200/70 pt-2 flex justify-between border-t border-emerald-800/80">
+                <span>Fundo: {brand.colors.verdeEscuro.hex}</span>
+                <span>Z / Texto: {brand.colors.dourado.hex}</span>
+              </div>
+            </div>
+
+            {/* 3. Color on Charcoal Black Background */}
+            <div 
+              className="p-8 flex flex-col justify-between min-h-[280px] transition-colors"
+              style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
             >
               <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                2.1.2 Colorida • Fundo Preto
+                2.1.3 Colorida • Fundo Preto Carvão
               </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="horizontal" colorMode="color-dark" size="md" />
+              <div className="py-8 flex items-center justify-center">
+                <BrandLogo variant="normal" colorMode="color" size="lg" />
               </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>Símbolo: {brand.colors.primary.hex}</span>
-                <span>Texto: #FFFFFF</span>
-              </div>
-            </div>
-
-            {/* 3. Horizontal - White Logo on Brand Green (#2E6930) */}
-            <div 
-              className="p-6 flex flex-col justify-between min-h-[220px] transition-colors"
-              style={{ backgroundColor: brand.colors.primary.hex }}
-            >
-              <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider">
-                2.1.3 Fundo Verde Institucional
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="horizontal" colorMode="mono-white" size="md" />
-              </div>
-              <div className="text-[10px] font-mono text-white/70 pt-2 flex justify-between">
-                <span>Logo: #FFFFFF</span>
-                <span>Fundo: {brand.colors.primary.hex}</span>
-              </div>
-            </div>
-
-            {/* 4. Horizontal - Mono Black */}
-            <div className="p-6 bg-stone-50 flex flex-col justify-between min-h-[220px]">
-              <span className="text-[10px] font-mono text-stone-500 uppercase tracking-wider">
-                2.1.4 Monocromática Positiva
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="horizontal" colorMode="mono-black" size="md" />
-              </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>100% Preto</span>
-                <span>Fundo Branco</span>
-              </div>
-            </div>
-
-            {/* 5. Horizontal - Mono White on Black */}
-            <div className="p-6 bg-stone-950 flex flex-col justify-between min-h-[220px]">
-              <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                2.1.5 Monocromática Negativa
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="horizontal" colorMode="mono-white" size="md" />
-              </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>100% Branco</span>
-                <span>Fundo Preto</span>
+              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between border-t border-stone-800">
+                <span>Fundo: {brand.colors.pretoComplementar.hex}</span>
+                <span>Z / Texto: {brand.colors.dourado.hex}</span>
               </div>
             </div>
 
           </div>
         </div>
 
-        {/* --- 2. VERTICAL / NORMAL SIGNATURES --- */}
+        {/* --- 2. MONOCHROME VARIATIONS --- */}
         <div className="space-y-6">
           <div className="space-y-1">
             <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
               <span className="font-mono text-stone-400">2.2</span>
-              <span>Assinatura Normal / Vertical (Empilhada)</span>
+              <span>Assinaturas Monocromáticas (P&B & Negativas)</span>
             </h3>
             <p className="text-xs text-stone-500">
-              Formato quadrado/empilhado para rótulos, sacarias, uniformes, crachás e avatares.
+              Para impressões em 1 cor (1x0), gravações a laser, carimbos, baixos-relevos e materiais de alto contraste.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             
-            {/* 1. Vertical - Color on Light */}
-            <div className="p-6 bg-stone-50 flex flex-col justify-between min-h-[280px]">
+            {/* 1. Mono Black on White */}
+            <div className="p-8 bg-stone-50 flex flex-col justify-between min-h-[260px]">
               <span className="text-[10px] font-mono text-stone-500 uppercase tracking-wider">
-                2.2.1 Colorida • Fundo Claro
+                2.2.1 Monocromática Positiva (P&B)
               </span>
               <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="vertical" colorMode="color-light" />
+                <BrandLogo variant="normal" colorMode="mono-black" size="lg" />
               </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>Símbolo: {brand.colors.primary.hex}</span>
-                <span>Texto: {brand.colors.secondary.hex}</span>
-              </div>
-            </div>
-
-            {/* 2. Vertical - Color on Dark */}
-            <div 
-              className="p-6 flex flex-col justify-between min-h-[280px]"
-              style={{ backgroundColor: brand.colors.neutralDark.hex }}
-            >
-              <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                2.2.2 Colorida • Fundo Preto
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="vertical" colorMode="color-dark" />
-              </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>Símbolo: {brand.colors.primary.hex}</span>
-                <span>Texto: #FFFFFF</span>
-              </div>
-            </div>
-
-            {/* 3. Vertical - White Logo on Brand Green (#2E6930) */}
-            <div 
-              className="p-6 flex flex-col justify-between min-h-[280px] transition-colors"
-              style={{ backgroundColor: brand.colors.primary.hex }}
-            >
-              <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider">
-                2.2.3 Fundo Verde Institucional
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="vertical" colorMode="mono-white" />
-              </div>
-              <div className="text-[10px] font-mono text-white/70 pt-2 flex justify-between">
-                <span>Logo: #FFFFFF</span>
-                <span>Fundo: {brand.colors.primary.hex}</span>
-              </div>
-            </div>
-
-            {/* 4. Vertical - Mono Black */}
-            <div className="p-6 bg-stone-50 flex flex-col justify-between min-h-[280px]">
-              <span className="text-[10px] font-mono text-stone-500 uppercase tracking-wider">
-                2.2.4 Monocromática Positiva
-              </span>
-              <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="vertical" colorMode="mono-black" />
-              </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>100% Preto</span>
+              <div className="text-[10px] font-mono text-stone-500 pt-2 flex justify-between border-t border-stone-200">
+                <span>100% Preto Carvão ({brand.colors.pretoComplementar.hex})</span>
                 <span>Fundo Branco</span>
               </div>
             </div>
 
-            {/* 5. Vertical - Mono White on Black */}
-            <div className="p-6 bg-stone-950 flex flex-col justify-between min-h-[280px]">
-              <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                2.2.5 Monocromática Negativa
+            {/* 2. Mono White on Forest Green */}
+            <div 
+              className="p-8 flex flex-col justify-between min-h-[260px] transition-colors"
+              style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
+            >
+              <span className="text-[10px] font-mono text-emerald-200/80 uppercase tracking-wider">
+                2.2.2 Monocromática Negativa (Fundo Verde)
               </span>
               <div className="py-6 flex items-center justify-center">
-                <BrandLogo variant="vertical" colorMode="mono-white" />
+                <BrandLogo variant="normal" colorMode="mono-white" size="lg" />
               </div>
-              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between">
-                <span>100% Branco</span>
-                <span>Fundo Preto</span>
+              <div className="text-[10px] font-mono text-emerald-200/70 pt-2 flex justify-between border-t border-emerald-800/80">
+                <span>100% Branco Puro</span>
+                <span>Fundo Verde ({brand.colors.verdeEscuro.hex})</span>
+              </div>
+            </div>
+
+            {/* 3. Mono White on Charcoal Black */}
+            <div 
+              className="p-8 flex flex-col justify-between min-h-[260px] transition-colors"
+              style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
+            >
+              <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                2.2.3 Monocromática Negativa (Fundo Preto)
+              </span>
+              <div className="py-6 flex items-center justify-center">
+                <BrandLogo variant="normal" colorMode="mono-white" size="lg" />
+              </div>
+              <div className="text-[10px] font-mono text-stone-400 pt-2 flex justify-between border-t border-stone-800">
+                <span>100% Branco Puro</span>
+                <span>Fundo Preto ({brand.colors.pretoComplementar.hex})</span>
               </div>
             </div>
 
@@ -216,47 +160,46 @@ export const ManualLogos: React.FC = () => {
               <span>Símbolo Isolado & Monograma AVZ</span>
             </h3>
             <p className="text-xs text-stone-500">
-              Utilizado para favicon, fechos de embalagens, bordados pequenos e marca d'água técnica.
+              Monograma AV integrado à silhueta do touro e letra Z para favicons, bordados, lacres e selos técnicos.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            
+            {/* Color on Light */}
             <div className="p-6 bg-stone-50 flex flex-col items-center justify-between min-h-[180px]">
-              <span className="text-[10px] font-mono text-stone-400 uppercase">Símbolo Cor</span>
-              <BrandLogo variant="symbol" colorMode="color-light" size="md" />
+              <span className="text-[10px] font-mono text-stone-400 uppercase">Símbolo Colorido</span>
+              <BrandLogo variant="symbol" colorMode="color" size="md" />
               <span className="text-[10px] font-mono text-stone-500">Fundo Claro</span>
             </div>
 
-            <div 
-              className="p-6 flex flex-col items-center justify-between min-h-[180px]"
-              style={{ backgroundColor: brand.colors.neutralDark.hex }}
-            >
-              <span className="text-[10px] font-mono text-stone-400 uppercase">Símbolo Cor</span>
-              <BrandLogo variant="symbol" colorMode="color-dark" size="md" />
-              <span className="text-[10px] font-mono text-stone-400">Fundo Escuro</span>
-            </div>
-
-            {/* Symbol White on Green #2E6930 */}
+            {/* Color on Green */}
             <div 
               className="p-6 flex flex-col items-center justify-between min-h-[180px] transition-colors"
-              style={{ backgroundColor: brand.colors.primary.hex }}
+              style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
             >
-              <span className="text-[10px] font-mono text-white/80 uppercase">Símbolo Branco</span>
-              <BrandLogo variant="symbol" colorMode="mono-white" size="md" />
-              <span className="text-[10px] font-mono text-white/80">Fundo Verde</span>
+              <span className="text-[10px] font-mono text-emerald-200/70 uppercase">Símbolo Colorido</span>
+              <BrandLogo variant="symbol" colorMode="color" size="md" />
+              <span className="text-[10px] font-mono text-emerald-200/80">Fundo Verde Floresta</span>
             </div>
 
+            {/* Mono Black */}
             <div className="p-6 bg-stone-50 flex flex-col items-center justify-between min-h-[180px]">
               <span className="text-[10px] font-mono text-stone-400 uppercase">Símbolo Preto</span>
               <BrandLogo variant="symbol" colorMode="mono-black" size="md" />
-              <span className="text-[10px] font-mono text-stone-500">100% Preto</span>
+              <span className="text-[10px] font-mono text-stone-500">100% Preto Carvão</span>
             </div>
 
-            <div className="p-6 bg-stone-950 flex flex-col items-center justify-between min-h-[180px]">
+            {/* Mono White on Black */}
+            <div 
+              className="p-6 flex flex-col items-center justify-between min-h-[180px] transition-colors"
+              style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
+            >
               <span className="text-[10px] font-mono text-stone-400 uppercase">Símbolo Branco</span>
               <BrandLogo variant="symbol" colorMode="mono-white" size="md" />
               <span className="text-[10px] font-mono text-stone-400">100% Branco</span>
             </div>
+
           </div>
         </div>
 
