@@ -31,12 +31,18 @@ export const SvgLogo: React.FC<SvgLogoProps> = ({
     return isGold ? effectiveDourado : effectiveVerdeMedio;
   };
 
-  const pathData = variant === 'vertical' ? EXACT_VERTICAL_LOGO_PATH : EXACT_HORIZONTAL_LOGO_PATH;
+  const pathData = variant === 'vertical' || variant === 'symbol' ? EXACT_VERTICAL_LOGO_PATH : EXACT_HORIZONTAL_LOGO_PATH;
+
+  const viewBoxParts = pathData.viewBox.split(' ');
+  const intrinsicWidth = viewBoxParts[2];
+  const intrinsicHeight = viewBoxParts[3];
 
   return (
     <svg 
       className={className}
       viewBox={pathData.viewBox}
+      width={intrinsicWidth}
+      height={intrinsicHeight}
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
     >
