@@ -1,11 +1,8 @@
 import React from 'react';
-import { useBrand } from '../context/BrandContext';
-import { Printer, Download, Palette, Stamp, Shield, Type, FileText, Smartphone } from 'lucide-react';
+import { Printer, Palette, Stamp, Shield, Type, FileText, Smartphone } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 export const ManualHeader: React.FC = () => {
-  const { setIsExportModalOpen } = useBrand();
-
   const sections = [
     { id: 'colors', label: '01. Cores', icon: Palette },
     { id: 'logos', label: '02. Assinaturas', icon: Stamp },
@@ -23,11 +20,6 @@ export const ManualHeader: React.FC = () => {
         <div className="flex items-center gap-3 min-w-0">
           <div className="h-8 flex items-center shrink-0">
             <BrandLogo variant="horizontal" colorMode="mono-white" size="sm" />
-          </div>
-          <div className="hidden xl:block border-l border-stone-700 pl-3">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-stone-200 block whitespace-nowrap">
-              Manual de Identidade Visual
-            </span>
           </div>
         </div>
 
@@ -51,13 +43,6 @@ export const ManualHeader: React.FC = () => {
 
         {/* Right: Print / Export */}
         <div className="flex items-center gap-3 shrink-0">
-          <button
-            onClick={() => setIsExportModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-200 text-xs font-semibold transition-colors cursor-pointer border border-stone-700"
-          >
-            <Download size={14} />
-            <span className="hidden sm:inline">Exportar Tokens</span>
-          </button>
 
           <button
             onClick={() => window.print()}

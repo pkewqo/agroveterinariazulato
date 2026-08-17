@@ -52,14 +52,8 @@ export const ManualHero: React.FC = () => {
           
           <div className="md:col-span-7 space-y-4">
             <div className="space-y-1">
-              <span 
-                className="text-xs font-mono font-bold uppercase tracking-widest block"
-                style={{ color: brand.colors.verdeMedio.hex }}
-              >
-                ★ 30 Anos de História & Tradição no Campo
-              </span>
               <h1 
-                className="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase"
+                className="text-3xl sm:text-5xl font-black tracking-normal text-white uppercase"
                 style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
               >
                 Manual de Identidade Visual
