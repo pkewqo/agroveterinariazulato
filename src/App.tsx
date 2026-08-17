@@ -8,18 +8,17 @@ import { ManualGridArea } from './components/sections/ManualGridArea';
 import { ManualTypography } from './components/sections/ManualTypography';
 import { ManualStationery } from './components/sections/ManualStationery';
 import { ManualSocialPosts } from './components/sections/ManualSocialPosts';
-import { ManualMotionLogo } from './components/sections/ManualMotionLogo';
 import { ExportModal } from './components/ExportModal';
 
 const BrandManualApp: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-stone-900 flex flex-col font-sans selection:bg-stone-900 selection:text-white">
-      {/* Clean Editorial Header */}
+      {/* Clean Header */}
       <ManualHeader />
 
       {/* Main Manual Content */}
       <main className="flex-1">
-        {/* Cover / Presentation */}
+        {/* First Section / First Page: Cover with Black Background & Anime.js createDrawable SVG Logo Drawing */}
         <ManualHero />
 
         {/* 01. Chromatic System (Unified 4-Color Palette with In-Section Reset) */}
@@ -39,23 +38,20 @@ const BrandManualApp: React.FC = () => {
 
         {/* 06. Social Media Posts 1080x1350 (Grande Porte & Linha Pet) */}
         <ManualSocialPosts />
-
-        {/* 07. Interactive Motion Design (Anime.js Logo Animations & Physics) */}
-        <ManualMotionLogo />
       </main>
 
       {/* Clean Editorial Footer */}
-      <footer className="bg-stone-50 py-12 text-stone-500 text-xs border-t border-stone-200">
+      <footer className="bg-stone-950 py-12 text-stone-400 text-xs border-t border-stone-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <p className="font-bold text-stone-900 uppercase tracking-wider">
+            <p className="font-bold text-white uppercase tracking-wider">
               Agroveterinária Zulato • Fernando Zulato (Proprietário)
             </p>
             <p className="text-[11px] text-stone-500">
               Av. Presidente Roosevelt, 452 • Dracena - SP • Tel: 18 99653-5452
             </p>
           </div>
-          <div className="text-[11px] font-mono text-stone-400">
+          <div className="text-[11px] font-mono text-stone-500">
             Manual de Identidade Visual Oficial • Grandes Animais & Linha Pet
           </div>
         </div>

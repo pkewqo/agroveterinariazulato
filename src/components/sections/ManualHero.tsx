@@ -1,77 +1,118 @@
 import React from 'react';
 import { useBrand } from '../../context/BrandContext';
-import { BrandLogo } from '../BrandLogo';
+import { AnimatedSvgLogo } from '../AnimatedSvgLogo';
+import { MapPin, Phone, Award, Sparkles } from 'lucide-react';
 
 export const ManualHero: React.FC = () => {
   const { brand } = useBrand();
 
   return (
-    <section className="bg-white py-16 sm:py-24 border-b border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section 
+      className="relative py-20 sm:py-28 text-white transition-colors border-b border-stone-800 overflow-hidden"
+      style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
+    >
+      {/* Subtle Technical Grid Background */}
+      <div className="absolute inset-0 bg-manual-grid opacity-20 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        {/* Top Meta Line */}
-        <div className="flex flex-wrap items-center justify-between text-xs font-mono text-stone-500 tracking-wider uppercase">
-          <div>NORMAS DE IDENTIDADE VISUAL & GESTÃO DA MARCA</div>
+        {/* Top Header Meta Line */}
+        <div className="flex flex-wrap items-center justify-between text-xs font-mono text-stone-400 tracking-wider uppercase border-b border-stone-800 pb-4">
+          <div className="flex items-center gap-2">
+            <span 
+              className="inline-block w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: brand.colors.dourado.hex }}
+            />
+            <span>NORMAS DE IDENTIDADE VISUAL & GESTÃO DA MARCA</span>
+          </div>
           <div>DRACENA - SP • FERNANDO ZULATO (PROPRIETÁRIO)</div>
         </div>
 
-        {/* Hero Presentation */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Master Showcase: Horizontal Animated SVG Drawing (Anime.js createDrawable) */}
+        <div className="py-8 sm:py-12 flex flex-col items-center justify-center space-y-6">
           
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-2">
+          <div className="text-center space-y-2">
+            <span 
+              className="text-xs uppercase font-mono tracking-widest font-bold inline-flex items-center gap-1.5"
+              style={{ color: brand.colors.dourado.hex }}
+            >
+              <Sparkles size={13} />
+              <span>Assinatura Institucional Primária (Horizontal)</span>
+            </span>
+          </div>
+
+          {/* Anime.js createDrawable SVG Canvas */}
+          <div className="w-full py-4 flex items-center justify-center">
+            <AnimatedSvgLogo className="w-full" showReplayButton={true} />
+          </div>
+
+        </div>
+
+        {/* Bottom Hero Information Grid */}
+        <div className="pt-8 border-t border-stone-800 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          <div className="md:col-span-7 space-y-4">
+            <div className="space-y-1">
               <span 
-                className="text-xs uppercase font-mono tracking-widest font-bold block"
+                className="text-xs font-mono font-bold uppercase tracking-widest block"
                 style={{ color: brand.colors.verdeMedio.hex }}
               >
-                ★ 30 Anos de História • Guia Oficial de Aplicação
+                ★ 30 Anos de História & Tradição no Campo
               </span>
-              <h1 className="text-4xl sm:text-6xl font-black text-stone-900 tracking-tight leading-[1.05]">
+              <h1 
+                className="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase"
+                style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
+              >
                 Manual de Identidade Visual
               </h1>
-              <p className="text-xl sm:text-2xl font-bold text-stone-700 pt-1">
+              <p className="text-lg font-bold text-stone-300">
                 {brand.brandName}
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
-              Com mais de <strong>30 anos de história</strong> em Dracena e região, a <strong>{brand.brandName}</strong> consolida
-              suas novas diretrizes normativas, proporções matemáticas, critérios cromáticos e tipográficos
-              para aplicação consistente em todos os pontos de contato.
+            <p 
+              className="text-sm text-stone-400 leading-relaxed max-w-xl"
+              style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
+            >
+              Com mais de <strong>30 anos de história</strong> em Dracena e região, a <strong>{brand.brandName}</strong> consolida suas diretrizes normativas, proporções matemáticas, critérios cromáticos e tipográficos para aplicação consistente no segmento de <strong>suprimentos para grandes animais</strong> e <strong>linha pet</strong>.
             </p>
-
-            <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs text-stone-600">
-              <div>
-                <span className="font-mono text-stone-400 block uppercase">Especialidade</span>
-                <span className="font-bold text-stone-900">Grande Porte & Linha Pet</span>
-              </div>
-              <div>
-                <span className="font-mono text-stone-400 block uppercase">Localização</span>
-                <span className="font-bold text-stone-900">Dracena - SP</span>
-              </div>
-              <div>
-                <span className="font-mono text-stone-400 block uppercase">Atendimento</span>
-                <span className="font-bold text-stone-900">{brand.socialHandles.phone}</span>
-              </div>
-            </div>
           </div>
 
-          {/* Right: Master Brand Mark Display (Horizontal) */}
-          <div className="lg:col-span-5">
-            <div className="p-8 sm:p-12 bg-stone-50 flex flex-col items-center justify-center min-h-[280px]">
-              <span className="text-[10px] font-mono text-stone-400 uppercase tracking-widest mb-6">
-                Marca Institucional Oficial (Horizontal)
+          <div className="md:col-span-5 grid grid-cols-2 gap-4 text-xs font-mono">
+            
+            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+              <span className="text-stone-500 uppercase flex items-center gap-1">
+                <Award size={12} className="text-emerald-400" />
+                <span>Tradição</span>
               </span>
-              <BrandLogo variant="horizontal" colorMode="color" size="lg" />
-              <div className="w-full mt-8 pt-4 flex justify-between text-[11px] font-mono text-stone-500 border-t border-stone-200">
-                <span style={{ color: brand.colors.verdeMedio.hex }} className="font-bold">
-                  ● AV: {brand.colors.verdeMedio.hex}
-                </span>
-                <span style={{ color: brand.colors.dourado.hex }} className="font-bold">
-                  ● Zulato: {brand.colors.dourado.hex}
-                </span>
-              </div>
+              <p className="font-bold text-stone-200">30 anos de história!</p>
+              <p className="text-[10px] text-stone-400">Desde 1996 em Dracena</p>
             </div>
+
+            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+              <span className="text-stone-500 uppercase flex items-center gap-1">
+                <MapPin size={12} className="text-emerald-400" />
+                <span>Localização</span>
+              </span>
+              <p className="font-bold text-stone-200">Dracena - SP</p>
+              <p className="text-[10px] text-stone-400">Av. Presidente Roosevelt, 452</p>
+            </div>
+
+            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+              <span className="text-stone-500 uppercase">Especialidade</span>
+              <p className="font-bold text-stone-200">Grande Porte & Pets</p>
+              <p className="text-[10px] text-stone-400">Nutrição, Medicamentos & Rações</p>
+            </div>
+
+            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+              <span className="text-stone-500 uppercase flex items-center gap-1">
+                <Phone size={12} className="text-emerald-400" />
+                <span>Atendimento</span>
+              </span>
+              <p className="font-bold text-stone-200">{brand.socialHandles.phone}</p>
+              <p className="text-[10px] text-stone-400">Fernando Zulato (Proprietário)</p>
+            </div>
+
           </div>
 
         </div>
