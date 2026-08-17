@@ -8,8 +8,8 @@ export const ManualHeader: React.FC = () => {
     { id: 'logos', label: '02. Assinaturas', icon: Stamp },
     { id: 'grid', label: '03. Área de Proteção', icon: Shield },
     { id: 'typography', label: '04. Tipografia', icon: Type },
-    { id: 'stationery', label: '05. Papelaria', icon: FileText },
-    { id: 'social-posts', label: '06. Redes Sociais', icon: Smartphone },
+    // { id: 'stationery', label: '05. Papelaria', icon: FileText },
+    // { id: 'social-posts', label: '06. Redes Sociais', icon: Smartphone },
   ];
 
   return (

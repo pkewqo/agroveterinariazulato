@@ -38,10 +38,10 @@ const BrandManualApp: React.FC = () => {
         <ManualTypography />
 
         {/* 05. Stationery & Graphic Print Guidelines (Fernando Zulato - Proprietário) */}
-        <ManualStationery />
+        {/* <ManualStationery /> */}
 
         {/* 06. Social Media Posts 1080x1350 (Grande Porte & Linha Pet) */}
-        <ManualSocialPosts />
+        {/* <ManualSocialPosts /> */}
       </main>
 
       {/* Clean Editorial Footer */}
