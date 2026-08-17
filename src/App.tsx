@@ -4,6 +4,7 @@ import { ManualHeader } from './components/ManualHeader';
 import { ManualHero } from './components/sections/ManualHero';
 import { ManualColors } from './components/sections/ManualColors';
 import { ManualLogos } from './components/sections/ManualLogos';
+import { ManualMockupShowcase } from './components/sections/ManualMockupShowcase';
 import { ManualGridArea } from './components/sections/ManualGridArea';
 import { ManualTypography } from './components/sections/ManualTypography';
 import { ManualStationery } from './components/sections/ManualStationery';
@@ -26,6 +27,9 @@ const BrandManualApp: React.FC = () => {
 
         {/* 02. Official Brand Signatures (Horizontal & Vertical) */}
         <ManualLogos />
+
+        {/* Brand Application Showcase */}
+        <ManualMockupShowcase />
 
         {/* 03. Grid & Safe Area (Styled on Charcoal Black Background) */}
         <ManualGridArea />
