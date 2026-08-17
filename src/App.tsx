@@ -8,6 +8,7 @@ import { ManualGridArea } from './components/sections/ManualGridArea';
 import { ManualTypography } from './components/sections/ManualTypography';
 import { ManualStationery } from './components/sections/ManualStationery';
 import { ManualSocialPosts } from './components/sections/ManualSocialPosts';
+import { ManualMotionLogo } from './components/sections/ManualMotionLogo';
 import { ExportModal } from './components/ExportModal';
 
 const BrandManualApp: React.FC = () => {
@@ -24,7 +25,7 @@ const BrandManualApp: React.FC = () => {
         {/* 01. Chromatic System (Unified 4-Color Palette with In-Section Reset) */}
         <ManualColors />
 
-        {/* 02. Official Brand Signatures */}
+        {/* 02. Official Brand Signatures (Horizontal & Vertical) */}
         <ManualLogos />
 
         {/* 03. Grid & Safe Area (Styled on Charcoal Black Background) */}
@@ -36,8 +37,11 @@ const BrandManualApp: React.FC = () => {
         {/* 05. Stationery & Graphic Print Guidelines (Fernando Zulato - Proprietário) */}
         <ManualStationery />
 
-        {/* 06. Social Media Posts 1350x1350 (Grande Porte & Linha Pet) */}
+        {/* 06. Social Media Posts 1080x1350 (Grande Porte & Linha Pet) */}
         <ManualSocialPosts />
+
+        {/* 07. Interactive Motion Design (Anime.js Logo Animations & Physics) */}
+        <ManualMotionLogo />
       </main>
 
       {/* Clean Editorial Footer */}

@@ -13,6 +13,7 @@ export const ManualHeader: React.FC = () => {
     { id: 'typography', label: '04. Tipografia' },
     { id: 'stationery', label: '05. Papelaria' },
     { id: 'social-posts', label: '06. Redes Sociais' },
+    { id: 'motion', label: '07. Motion Design' },
   ];
 
   return (
@@ -22,7 +23,7 @@ export const ManualHeader: React.FC = () => {
         {/* Left: Brand Identification */}
         <div className="flex items-center gap-4 min-w-0">
           <div className="h-9 flex items-center shrink-0">
-            <BrandLogo variant="normal" colorMode="color" size="sm" />
+            <BrandLogo variant="horizontal" colorMode="color" size="sm" />
           </div>
           <div className="hidden md:block border-l border-stone-300 pl-3">
             <span className="text-xs font-bold uppercase tracking-widest text-stone-900 block">
@@ -32,7 +33,7 @@ export const ManualHeader: React.FC = () => {
         </div>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-4">
+        <nav className="hidden xl:flex items-center gap-4">
           {sections.map(s => (
             <a
               key={s.id}
