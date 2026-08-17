@@ -4,9 +4,7 @@ import { POPULAR_GOOGLE_FONTS } from '../../utils/fontLoader';
 
 export const ManualTypography: React.FC = () => {
   const { brand, updateFont } = useBrand();
-  const [sampleSentence, setSampleSentence] = useState(
-    'Agroveterinária Zulato: Especialistas em nutrição para animais de grande porte e linha pet completa em Dracena - SP.'
-  );
+  const [sampleSentence, setSampleSentence] = useState('ZULATO');
 
   const hierarchy = [
     { name: 'Display Principal (Impact)', size: '48px', weight: 'Normal / Bold', isHeadline: true, sample: brand.brandName },
