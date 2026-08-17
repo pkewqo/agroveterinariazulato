@@ -1,5 +1,5 @@
 import React from 'react';
-import { Printer, Palette, Stamp, Shield, Type, FileText, Smartphone } from 'lucide-react';
+import { Printer, Palette, Stamp, Shield, Type } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 export const ManualHeader: React.FC = () => {

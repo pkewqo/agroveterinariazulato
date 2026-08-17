@@ -7,8 +7,8 @@ import { ManualLogos } from './components/sections/ManualLogos';
 import { ManualMockupShowcase } from './components/sections/ManualMockupShowcase';
 import { ManualGridArea } from './components/sections/ManualGridArea';
 import { ManualTypography } from './components/sections/ManualTypography';
-import { ManualStationery } from './components/sections/ManualStationery';
-import { ManualSocialPosts } from './components/sections/ManualSocialPosts';
+// import { ManualStationery } from './components/sections/ManualStationery';
+// import { ManualSocialPosts } from './components/sections/ManualSocialPosts';
 import { ExportModal } from './components/ExportModal';
 
 const BrandManualApp: React.FC = () => {
