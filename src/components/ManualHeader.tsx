@@ -1,5 +1,5 @@
 import React from 'react';
-import { Printer, Palette, Stamp, Shield, Type } from 'lucide-react';
+import { Palette, Stamp, Shield, Type } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 export const ManualHeader: React.FC = () => {
@@ -41,17 +41,8 @@ export const ManualHeader: React.FC = () => {
           ))}
         </nav>
 
-        {/* Right: Print / Export */}
+        {/* Right: Empty */}
         <div className="flex items-center gap-3 shrink-0">
-
-          <button
-            onClick={() => window.print()}
-            title="Imprimir ou Salvar Manual em PDF"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-white hover:bg-stone-200 text-stone-950 text-xs font-semibold transition-colors cursor-pointer"
-          >
-            <Printer size={14} />
-            <span>Imprimir Manual</span>
-          </button>
         </div>
 
       </div>
