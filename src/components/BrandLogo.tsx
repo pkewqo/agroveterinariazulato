@@ -70,13 +70,14 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           ? normalizedVariant === 'horizontal' ? 'max-h-20 max-w-[360px]' : normalizedVariant === 'symbol' ? 'max-h-28 max-w-[160px]' : 'max-h-36 max-w-[240px]'
           : normalizedVariant === 'horizontal' ? 'max-h-28 max-w-[480px]' : normalizedVariant === 'symbol' ? 'max-h-36 max-w-[200px]' : 'max-h-48 max-w-[320px]';
 
-  if (normalizedVariant === 'horizontal') {
+  if (normalizedVariant === 'horizontal' || normalizedVariant === 'vertical') {
     return (
       <div 
         className={`inline-flex items-center justify-center select-none ${className}`}
         style={customHeight ? { height: `${customHeight}px` } : undefined}
       >
         <SvgLogo 
+          variant={normalizedVariant}
           colorMode={colorMode}
           douradoColor={effectiveDourado}
           verdeMedioColor={effectiveVerdeMedio}

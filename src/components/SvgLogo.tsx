@@ -1,8 +1,9 @@
 import React from 'react';
-import { EXACT_LOGO_PATH } from '../data/exactLogoPath';
+import { EXACT_HORIZONTAL_LOGO_PATH, EXACT_VERTICAL_LOGO_PATH } from '../data/exactLogoPath';
 import { useBrand } from '../context/BrandContext';
 
 export interface SvgLogoProps {
+  variant?: 'horizontal' | 'vertical' | 'symbol';
   colorMode?: 'color' | 'mono-black' | 'mono-white';
   className?: string;
   douradoColor?: string;
@@ -11,6 +12,7 @@ export interface SvgLogoProps {
 }
 
 export const SvgLogo: React.FC<SvgLogoProps> = ({ 
+  variant = 'horizontal',
   colorMode = 'color',
   className = '',
   douradoColor,
@@ -29,20 +31,22 @@ export const SvgLogo: React.FC<SvgLogoProps> = ({
     return isGold ? effectiveDourado : effectiveVerdeMedio;
   };
 
+  const pathData = variant === 'vertical' ? EXACT_VERTICAL_LOGO_PATH : EXACT_HORIZONTAL_LOGO_PATH;
+
   return (
     <svg 
       className={className}
-      viewBox={EXACT_LOGO_PATH.viewBox}
+      viewBox={pathData.viewBox}
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
     >
       <g>
-        {EXACT_LOGO_PATH.goldPaths.map((d, i) => (
+        {pathData.goldPaths.map((d, i) => (
           <path key={`gold-${i}`} d={d} fill={getFillColor(true)} />
         ))}
       </g>
       <g>
-        {EXACT_LOGO_PATH.greenPaths.map((d, i) => (
+        {pathData.greenPaths.map((d, i) => (
           <path key={`green-${i}`} d={d} fill={getFillColor(false)} />
         ))}
       </g>
