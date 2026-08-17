@@ -36,28 +36,28 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
       }
     });
 
-    // 1. Draw exact 1:1 white contour paths (0ms -> 1600ms)
+    // 1. Draw exact 1:1 white contour paths
     tl.add(drawables, {
       draw: ['0 0', '0 1'],
-      duration: 1600,
+      duration: 1800,
       ease: 'inOutCubic',
     }, 0);
 
-    // 2. Fade in official solid logo & fade out the white stroke contour (1400ms -> 1800ms)
+    // 2. Fade in official solid logo & fade out the white stroke contour
     const fadeState = { logo: 0, stroke: 1 };
     tl.add(fadeState, {
       logo: [0, 1],
       stroke: [1, 0],
-      duration: 400,
+      duration: 500,
       ease: 'outQuad',
       onUpdate: () => {
         setLogoOpacity(fadeState.logo);
         setStrokeOpacity(fadeState.stroke);
       }
-    }, 1400);
+    }, 1600);
 
-    // 3. Hold solid logo for ~2 seconds (1800ms -> 3800ms)
-    // 4. Fade out solid logo to restart loop smoothly (3800ms -> 4200ms)
+    // 3. Hold solid logo for ~2 seconds
+    // 4. Fade out solid logo to restart loop smoothly
     tl.add(fadeState, {
       logo: [1, 0],
       duration: 400,
@@ -65,7 +65,7 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
       onUpdate: () => {
         setLogoOpacity(fadeState.logo);
       }
-    }, 3800);
+    }, 4100);
 
     timelineRef.current = tl;
 
@@ -81,7 +81,7 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
       
       {/* Main Responsive Stage */}
       <div 
-        className="relative z-10 w-full max-w-3xl sm:max-w-4xl px-2 sm:px-6 flex items-center justify-center select-none aspect-[300/65] min-h-[140px] sm:min-h-[190px]"
+        className="relative z-10 w-full max-w-3xl sm:max-w-4xl px-2 sm:px-6 flex items-center justify-center select-none aspect-[1037/225] min-h-[140px] sm:min-h-[190px]"
       >
         
         {/* LAYER 1: Exact 1:1 Pixel-Accurate White Contours (Anime.js animated) */}
