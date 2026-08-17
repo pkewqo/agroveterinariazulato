@@ -28,14 +28,23 @@ const BrandManualApp: React.FC = () => {
         {/* 02. Official Brand Signatures (Horizontal & Vertical) */}
         <ManualLogos />
 
-        {/* Brand Application Showcase */}
-        <ManualMockupShowcase />
+        {/* Brand Application Showcase (Box) */}
+        <ManualMockupShowcase imageUrl="/assets/box-mockup.png" />
 
         {/* 03. Grid & Safe Area (Styled on Charcoal Black Background) */}
         <ManualGridArea />
 
+        {/* Brand Application Showcase (Pattern) */}
+        <ManualMockupShowcase imageUrl="/assets/mockup-pattern.jpg" />
+
         {/* 04. Institutional Typography (Fixed Impact Headline + Configurable Arimo Body) */}
         <ManualTypography />
+
+        {/* Brand Application Showcase (Jacket) */}
+        <ManualMockupShowcase imageUrl="/assets/mockup-jacket.jpg" />
+
+        {/* Brand Application Showcase (Cards) */}
+        <ManualMockupShowcase imageUrl="/assets/mockup-cards.jpg" />
 
         {/* 05. Stationery & Graphic Print Guidelines (Fernando Zulato - Proprietário) */}
         {/* <ManualStationery /> */}
