@@ -1,109 +1,110 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createTimeline } from 'animejs';
-import { useBrand } from '../context/BrandContext';
-import { RotateCcw } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 interface AnimatedSvgLogoProps {
   className?: string;
-  showReplayButton?: boolean;
 }
 
 export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
   className = '',
-  showReplayButton = true,
 }) => {
-  const { brand } = useBrand();
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [fillOpacity, setFillOpacity] = useState(0);
   const [strokeProgress, setStrokeProgress] = useState(0);
+  const [strokeOpacity, setStrokeOpacity] = useState(1);
+  const [logoOpacity, setLogoOpacity] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-  const strokeGroupRef = useRef<SVGGElement>(null);
-  const solidLogoRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<any>(null);
 
-  const startAnimation = () => {
-    setIsDrawing(true);
-    setFillOpacity(0);
+  useEffect(() => {
+    // Reset state
     setStrokeProgress(0);
+    setStrokeOpacity(1);
+    setLogoOpacity(0);
 
-    // Timeline using Anime.js
+    const animState = {
+      stroke: 0,
+      strokeOpacity: 1,
+      logoOpacity: 0,
+    };
+
+    // Anime.js Infinite Loop Timeline
     const tl = createTimeline({
+      loop: true,
       autoplay: true,
-      onComplete: () => {
-        setIsDrawing(false);
+      onLoop: () => {
+        animState.stroke = 0;
+        animState.strokeOpacity = 1;
+        animState.logoOpacity = 0;
+        setStrokeProgress(0);
+        setStrokeOpacity(1);
+        setLogoOpacity(0);
       }
     });
 
-    // Step 1: Draw geometric strokes from 0% to 100%
-    const progressObj = { val: 0 };
-    tl.add(progressObj, {
-      val: [0, 100],
-      duration: 1800,
+    // 1. Draw Thin White Contours (0ms -> 1500ms)
+    tl.add(animState, {
+      stroke: [0, 100],
+      duration: 1500,
       ease: 'inOutCubic',
       onUpdate: () => {
-        setStrokeProgress(progressObj.val);
-      }
+        setStrokeProgress(animState.stroke);
+      },
     }, 0);
 
-    // Step 2: Fade in the authentic solid logo & subtle backlight glow
-    const opacityObj = { val: 0 };
-    tl.add(opacityObj, {
-      val: [0, 1],
-      duration: 800,
+    // 2. Cross-fade: Solid Logo appears, white contour completely disappears (1350ms -> 1850ms)
+    tl.add(animState, {
+      logoOpacity: [0, 1],
+      strokeOpacity: [1, 0],
+      duration: 500,
       ease: 'outQuad',
       onUpdate: () => {
-        setFillOpacity(opacityObj.val);
+        setLogoOpacity(animState.logoOpacity);
+        setStrokeOpacity(animState.strokeOpacity);
+      },
+    }, 1350);
+
+    // 3. Hold solid logo for ~2 seconds (1850ms -> 3850ms)
+    // 4. Fade out solid logo to smoothly restart the infinite loop (3850ms -> 4300ms)
+    tl.add(animState, {
+      logoOpacity: [1, 0],
+      duration: 450,
+      ease: 'inQuad',
+      onUpdate: () => {
+        setLogoOpacity(animState.logoOpacity);
+      },
+    }, 3850);
+
+    timelineRef.current = tl;
+
+    return () => {
+      if (timelineRef.current && typeof timelineRef.current.pause === 'function') {
+        timelineRef.current.pause();
       }
-    }, 1200);
+    };
+  }, []);
 
-    if (glowRef.current) {
-      tl.add(glowRef.current, {
-        opacity: [0, 0.4, 0.15],
-        scale: [0.7, 1.2, 1.0],
-        duration: 1200,
-        ease: 'outExpo',
-      }, 1100);
-    }
-  };
-
-  useEffect(() => {
-    startAnimation();
-  }, [brand.colors.dourado.hex, brand.colors.verdeMedio.hex]);
-
-  // Stroke Dash calculations for crisp vector elements
   const dashoffset = 100 - strokeProgress;
 
   return (
-    <div className={`relative flex flex-col items-center justify-center ${className}`}>
+    <div className={`relative flex items-center justify-center w-full ${className}`}>
       
-      {/* Background Luminous Radial Glow */}
-      <div
-        ref={glowRef}
-        className="absolute w-[500px] h-32 rounded-full pointer-events-none blur-3xl opacity-0 transition-opacity"
-        style={{
-          backgroundColor: brand.colors.dourado.hex,
-          filter: 'blur(60px)',
-        }}
-      />
-
-      {/* Main Container */}
+      {/* Main Container - Scaled up for prominent display */}
       <div 
         ref={containerRef}
-        className="relative z-10 w-full max-w-2xl px-4 flex items-center justify-center select-none aspect-[4.8/1] min-h-[120px]"
+        className="relative z-10 w-full max-w-3xl sm:max-w-4xl px-2 sm:px-6 flex items-center justify-center select-none aspect-[4.8/1] min-h-[140px] sm:min-h-[190px]"
       >
         
-        {/* LAYER 1: Geometric Precision Vector Stroke Drawing (Anime.js animated) */}
+        {/* LAYER 1: Fine Thin White Vector Stroke Outlines (Anime.js animated) */}
         <svg
           viewBox="0 0 540 120"
-          className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+          className="absolute inset-0 w-full h-full overflow-visible pointer-events-none transition-opacity duration-150"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ opacity: 1 - fillOpacity * 0.85 }}
+          style={{ opacity: strokeOpacity }}
         >
-          <g ref={strokeGroupRef} className="will-change-transform">
+          <g>
             
-            {/* 1. GREEN "AV" MONOGRAM (Geometric Crisp Font Outline) */}
+            {/* 1. WHITE "AV" MONOGRAM (Thin crisp contour) */}
             <text
               x="20"
               y="98"
@@ -111,8 +112,8 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               fontSize="102"
               fontWeight="900"
               fill="none"
-              stroke={brand.colors.verdeMedio.hex}
-              strokeWidth="2.2"
+              stroke="#FFFFFF"
+              strokeWidth="0.85"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeDasharray="100"
@@ -121,19 +122,19 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               AV
             </text>
 
-            {/* 2. BULL SILHOUETTE BEZIER CONTOUR (Sharp horns & muzzle) */}
+            {/* 2. BULL SILHOUETTE BEZIER CONTOUR (Thin sharp horns) */}
             <path
               d="M 112,45 C 108,28 116,16 132,12 C 124,19 122,28 126,34 C 132,30 148,28 160,35 C 168,26 166,16 156,12 C 172,16 180,28 176,45 C 185,55 186,68 178,80 C 168,75 160,78 152,85 C 145,80 138,82 132,88 C 122,82 115,65 112,45 Z"
               fill="none"
-              stroke={brand.colors.dourado.hex}
-              strokeWidth="2.0"
+              stroke="#FFFFFF"
+              strokeWidth="0.85"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeDasharray="100"
               strokeDashoffset={`${dashoffset}%`}
             />
 
-            {/* 3. GOLD "Z" SLAB (Sharp Outline) */}
+            {/* 3. WHITE "Z" SLAB (Thin sharp contour) */}
             <text
               x="132"
               y="98"
@@ -141,8 +142,8 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               fontSize="102"
               fontWeight="900"
               fill="none"
-              stroke={brand.colors.dourado.hex}
-              strokeWidth="2.2"
+              stroke="#FFFFFF"
+              strokeWidth="0.85"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeDasharray="100"
@@ -151,7 +152,7 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               Z
             </text>
 
-            {/* 4. UPPER "AGROVETERINÁRIA" (100% Crisp & Perfectly Legible Grotesque Text) */}
+            {/* 4. UPPER "AGROVETERINÁRIA" (Thin, clean & perfectly legible text) */}
             <text
               x="235"
               y="32"
@@ -160,8 +161,8 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               fontWeight="800"
               letterSpacing="4.5px"
               fill="none"
-              stroke={brand.colors.dourado.hex}
-              strokeWidth="1.2"
+              stroke="#FFFFFF"
+              strokeWidth="0.75"
               strokeLinecap="round"
               strokeDasharray="100"
               strokeDashoffset={`${dashoffset}%`}
@@ -169,7 +170,7 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               AGROVETERINÁRIA
             </text>
 
-            {/* 5. MAIN "ZULATO" (Impact Condensed Bold Typography Outline) */}
+            {/* 5. MAIN "ZULATO" (Impact bold typography thin contour) */}
             <text
               x="230"
               y="100"
@@ -178,8 +179,8 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
               fontWeight="900"
               letterSpacing="2px"
               fill="none"
-              stroke={brand.colors.dourado.hex}
-              strokeWidth="2.2"
+              stroke="#FFFFFF"
+              strokeWidth="0.85"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeDasharray="100"
@@ -191,36 +192,20 @@ export const AnimatedSvgLogo: React.FC<AnimatedSvgLogoProps> = ({
           </g>
         </svg>
 
-        {/* LAYER 2: 100% Authentic, Pixel-Perfect Official Logo (Fades in smoothly) */}
+        {/* LAYER 2: 100% Authentic, Pixel-Perfect Solid Official Logo (Large display) */}
         <div 
-          ref={solidLogoRef}
-          className="w-full flex items-center justify-center will-change-transform transition-opacity duration-300"
-          style={{ opacity: fillOpacity }}
+          className="w-full flex items-center justify-center will-change-transform transition-opacity duration-200"
+          style={{ opacity: logoOpacity }}
         >
           <BrandLogo 
             variant="horizontal" 
             colorMode="color" 
             size="xl" 
-            className="w-full max-w-xl h-auto"
+            className="w-full max-w-2xl sm:max-w-3xl h-auto"
           />
         </div>
 
       </div>
-
-      {/* Interactive Replay / Status Trigger */}
-      {showReplayButton && (
-        <div className="mt-8 z-20 flex items-center gap-3 no-print">
-          <button
-            onClick={startAnimation}
-            disabled={isDrawing}
-            className="flex items-center gap-2 px-4 py-2 bg-stone-900/90 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-700 text-xs font-mono transition-all cursor-pointer shadow-lg disabled:opacity-50"
-            title="Desenhar logotipo novamente com Anime.js"
-          >
-            <RotateCcw size={13} className={isDrawing ? 'animate-spin' : ''} />
-            <span>{isDrawing ? 'Desenhando contornos...' : 'Redesenhar Logotipo (Anime.js)'}</span>
-          </button>
-        </div>
-      )}
 
     </div>
   );

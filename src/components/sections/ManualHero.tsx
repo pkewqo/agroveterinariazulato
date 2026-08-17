@@ -1,14 +1,14 @@
 import React from 'react';
 import { useBrand } from '../../context/BrandContext';
 import { AnimatedSvgLogo } from '../AnimatedSvgLogo';
-import { MapPin, Phone, Award, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Award } from 'lucide-react';
 
 export const ManualHero: React.FC = () => {
   const { brand } = useBrand();
 
   return (
     <section 
-      className="relative py-20 sm:py-28 text-white transition-colors border-b border-stone-800 overflow-hidden"
+      className="relative py-16 sm:py-24 text-white transition-colors border-b border-stone-800 overflow-hidden"
       style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
     >
       {/* Subtle Technical Grid Background */}
@@ -20,7 +20,7 @@ export const ManualHero: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between text-xs font-mono text-stone-400 tracking-wider uppercase border-b border-stone-800 pb-4">
           <div className="flex items-center gap-2">
             <span 
-              className="inline-block w-2 h-2 rounded-full animate-pulse"
+              className="inline-block w-2 h-2 rounded-full"
               style={{ backgroundColor: brand.colors.dourado.hex }}
             />
             <span>NORMAS DE IDENTIDADE VISUAL & GESTÃO DA MARCA</span>
@@ -28,22 +28,21 @@ export const ManualHero: React.FC = () => {
           <div>DRACENA - SP • FERNANDO ZULATO (PROPRIETÁRIO)</div>
         </div>
 
-        {/* Master Showcase: Horizontal Animated SVG Drawing (Anime.js createDrawable) */}
-        <div className="py-8 sm:py-12 flex flex-col items-center justify-center space-y-6">
+        {/* Master Showcase: Horizontal Animated SVG Drawing (Anime.js infinite loop) */}
+        <div className="py-6 sm:py-10 flex flex-col items-center justify-center space-y-4">
           
-          <div className="text-center space-y-2">
+          <div className="text-center">
             <span 
-              className="text-xs uppercase font-mono tracking-widest font-bold inline-flex items-center gap-1.5"
+              className="text-xs uppercase font-mono tracking-widest font-bold"
               style={{ color: brand.colors.dourado.hex }}
             >
-              <Sparkles size={13} />
-              <span>Assinatura Institucional Primária (Horizontal)</span>
+              ★ Assinatura Institucional Primária (Horizontal)
             </span>
           </div>
 
-          {/* Anime.js createDrawable SVG Canvas */}
+          {/* Anime.js Infinite Loop SVG Drawing Stage */}
           <div className="w-full py-4 flex items-center justify-center">
-            <AnimatedSvgLogo className="w-full" showReplayButton={true} />
+            <AnimatedSvgLogo className="w-full" />
           </div>
 
         </div>
