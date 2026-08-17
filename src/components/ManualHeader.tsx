@@ -1,46 +1,51 @@
 import React from 'react';
 import { useBrand } from '../context/BrandContext';
-import { Printer, Download } from 'lucide-react';
+import { Printer, Download, Palette, Stamp, Shield, Type, FileText, Smartphone } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
 export const ManualHeader: React.FC = () => {
   const { setIsExportModalOpen } = useBrand();
 
   const sections = [
-    { id: 'colors', label: '01. Cores' },
-    { id: 'logos', label: '02. Assinaturas' },
-    { id: 'grid', label: '03. Área de Proteção' },
-    { id: 'typography', label: '04. Tipografia' },
-    { id: 'stationery', label: '05. Papelaria' },
-    { id: 'social-posts', label: '06. Redes Sociais' },
+    { id: 'colors', label: '01. Cores', icon: Palette },
+    { id: 'logos', label: '02. Assinaturas', icon: Stamp },
+    { id: 'grid', label: '03. Área de Proteção', icon: Shield },
+    { id: 'typography', label: '04. Tipografia', icon: Type },
+    { id: 'stationery', label: '05. Papelaria', icon: FileText },
+    { id: 'social-posts', label: '06. Redes Sociais', icon: Smartphone },
   ];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-stone-950 text-white border-b border-stone-800 no-print">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
         
         {/* Left: Brand Identification */}
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="h-8 flex items-center shrink-0">
             <BrandLogo variant="horizontal" colorMode="mono-white" size="sm" />
           </div>
-          <div className="hidden md:block border-l border-stone-700 pl-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-200 block">
+          <div className="hidden xl:block border-l border-stone-700 pl-3">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-stone-200 block whitespace-nowrap">
               Manual de Identidade Visual
             </span>
           </div>
         </div>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-4">
-          {sections.map(s => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="text-xs font-semibold text-stone-400 hover:text-white transition-colors uppercase tracking-wider"
-            >
-              {s.label}
-            </a>
+        <nav className="hidden lg:flex flex-1 items-center justify-center gap-2 xl:gap-3">
+          {sections.map((s, idx) => (
+            <React.Fragment key={s.id}>
+              <a
+                href={`#${s.id}`}
+                className="flex items-center gap-1.5 text-[10px] font-semibold text-stone-400 hover:text-white transition-colors uppercase tracking-wider whitespace-nowrap"
+              >
+                <s.icon size={12} className="opacity-70" />
+                <span>{s.label}</span>
+              </a>
+              {idx < sections.length - 1 && (
+                <span className="text-stone-700 font-light text-[10px]">|</span>
+              )}
+            </React.Fragment>
           ))}
         </nav>
 
