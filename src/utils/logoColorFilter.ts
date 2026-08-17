@@ -13,16 +13,24 @@ const canvasCache = new Map<string, string>();
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   if (imageCache.has(src)) {
-    return Promise.resolve(imageCache.get(src)!);
+    const cached = imageCache.get(src)!;
+    if (cached.complete && cached.naturalWidth > 0) {
+      return Promise.resolve(cached);
+    }
   }
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      img.crossOrigin = 'anonymous';
+    }
     img.onload = () => {
       imageCache.set(src, img);
       resolve(img);
     };
-    img.onerror = reject;
+    img.onerror = (err) => {
+      console.warn('Could not load image for canvas recolor:', src, err);
+      reject(err);
+    };
     img.src = src;
   });
 }
@@ -52,7 +60,7 @@ export async function recolorNewLogo(src: string, options: RecolorOptions): Prom
     let minX = canvas.width, minY = canvas.height, maxX = 0, maxY = 0;
     let hasOpaque = false;
 
-    // The text in the new logo starts around the bottom 40% of the canvas
+    // The text in the stacked vertical logo starts around the bottom 40% of the canvas
     const textStartY = Math.floor(canvas.height * 0.58);
 
     for (let i = 0; i < data.length; i += 4) {
@@ -129,7 +137,7 @@ export async function recolorNewLogo(src: string, options: RecolorOptions): Prom
     canvasCache.set(cacheKey, resultDataUrl);
     return resultDataUrl;
   } catch (err) {
-    console.error('Error recoloring logo:', err);
+    console.warn('Fallback to original src for logo:', err);
     return src;
   }
 }

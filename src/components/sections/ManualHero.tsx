@@ -6,13 +6,13 @@ export const ManualHero: React.FC = () => {
   const { brand } = useBrand();
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-16 sm:py-24 border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Top Meta Line */}
         <div className="flex flex-wrap items-center justify-between text-xs font-mono text-stone-500 tracking-wider uppercase">
           <div>NORMAS DE IDENTIDADE VISUAL & GESTÃO DA MARCA</div>
-          <div>30 ANOS DE HISTÓRIA • DRACENA - SP</div>
+          <div>DRACENA - SP • FERNANDO ZULATO (PROPRIETÁRIO)</div>
         </div>
 
         {/* Hero Presentation */}
@@ -42,8 +42,8 @@ export const ManualHero: React.FC = () => {
 
             <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs text-stone-600">
               <div>
-                <span className="font-mono text-stone-400 block uppercase">Tradição</span>
-                <span className="font-bold text-stone-900">30 anos de história!</span>
+                <span className="font-mono text-stone-400 block uppercase">Especialidade</span>
+                <span className="font-bold text-stone-900">Grande Porte & Linha Pet</span>
               </div>
               <div>
                 <span className="font-mono text-stone-400 block uppercase">Localização</span>
@@ -56,19 +56,19 @@ export const ManualHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Master Brand Mark Display */}
+          {/* Right: Master Brand Mark Display (Horizontal) */}
           <div className="lg:col-span-5">
             <div className="p-8 sm:p-12 bg-stone-50 flex flex-col items-center justify-center min-h-[280px]">
               <span className="text-[10px] font-mono text-stone-400 uppercase tracking-widest mb-6">
-                Marca Institucional Oficial
+                Marca Institucional Oficial (Horizontal)
               </span>
-              <BrandLogo variant="normal" colorMode="color" size="lg" />
+              <BrandLogo variant="horizontal" colorMode="color" size="lg" />
               <div className="w-full mt-8 pt-4 flex justify-between text-[11px] font-mono text-stone-500 border-t border-stone-200">
                 <span style={{ color: brand.colors.verdeMedio.hex }} className="font-bold">
                   ● AV: {brand.colors.verdeMedio.hex}
                 </span>
                 <span style={{ color: brand.colors.dourado.hex }} className="font-bold">
-                  ● Dourado: {brand.colors.dourado.hex}
+                  ● Zulato: {brand.colors.dourado.hex}
                 </span>
               </div>
             </div>

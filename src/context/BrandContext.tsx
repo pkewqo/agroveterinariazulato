@@ -17,7 +17,7 @@ interface BrandContextType {
   updateBrandField: <K extends keyof BrandState>(field: K, value: BrandState[K]) => void;
   updateColor: (colorKey: keyof BrandState['colors'], hex: string, name?: string) => void;
   updateFont: (type: 'headline' | 'body' | 'mono', family: string) => void;
-  updateLogoVariant: (variant: 'normal' | 'symbol') => void;
+  updateLogoVariant: (variant: 'horizontal' | 'vertical' | 'symbol') => void;
   updateToneSlider: (sliderId: string, value: number) => void;
   loadPreset: (presetId: string) => void;
   resetToDefault: () => void;
@@ -26,7 +26,7 @@ interface BrandContextType {
 
 const BrandContext = createContext<BrandContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY = 'brandguide_studio_zulato_v2';
+const LOCAL_STORAGE_KEY = 'brandguide_studio_zulato_v3';
 
 export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [brand, setBrand] = useState<BrandState>(() => {
@@ -105,7 +105,7 @@ export const BrandProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }));
   };
 
-  const updateLogoVariant = (variant: 'normal' | 'symbol') => {
+  const updateLogoVariant = (variant: 'horizontal' | 'vertical' | 'symbol') => {
     setBrand(prev => ({
       ...prev,
       logos: {

@@ -74,8 +74,8 @@ export const ManualGridArea: React.FC = () => {
                   X
                 </span>
 
-                {/* Central Brand Logo */}
-                <BrandLogo variant="normal" colorMode="mono-white" size="lg" />
+                {/* Central Brand Logo (Horizontal) */}
+                <BrandLogo variant="horizontal" colorMode="mono-white" size="lg" />
               </div>
 
             </div>
@@ -129,7 +129,7 @@ export const ManualGridArea: React.FC = () => {
 
         </div>
 
-        {/* 2. Brand Misuse Prohibitions (Mau Uso) */}
+        {/* 2. Brand Misuse Prohibitions (Mau Uso) - High Visibility & Clear Previews */}
         <div className="space-y-6">
           <div className="space-y-1">
             <h3 className="text-lg font-bold text-stone-100 flex items-center gap-2">
@@ -137,74 +137,66 @@ export const ManualGridArea: React.FC = () => {
               <span>3.3 Normas de Proibição (Mau Uso do Logotipo)</span>
             </h3>
             <p className="text-xs text-stone-400">
-              A integridade estrutural e cromática da marca deve ser rigorosamente mantida.
+              A integridade estrutural e cromática da marca deve ser rigorosamente mantida. Abaixo, exemplos claros de aplicações proibidas:
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Don't 1: Distort */}
-            <div className="p-6 bg-stone-900/90 border border-stone-800 space-y-3">
-              <div className="h-28 bg-stone-950 flex items-center justify-center p-3 relative overflow-hidden">
-                <div className="scale-y-150 scale-x-75 opacity-40">
-                  <BrandLogo variant="normal" colorMode="mono-white" size="sm" />
-                </div>
-                <div className="absolute inset-0 bg-red-950/30 flex items-center justify-center">
-                  <div className="w-7 h-7 bg-red-600 text-white flex items-center justify-center">
-                    <X size={16} />
-                  </div>
+            <div className="p-5 bg-white text-stone-900 space-y-3 shadow-md relative">
+              <div className="absolute top-3 right-3 bg-red-600 text-white flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-bold uppercase shadow-sm">
+                <X size={12} />
+                <span>Proibido</span>
+              </div>
+              <div className="h-32 bg-stone-100 flex items-center justify-center p-3 overflow-hidden border border-stone-200">
+                <div className="scale-y-150 scale-x-75">
+                  <BrandLogo variant="horizontal" colorMode="color" size="md" />
                 </div>
               </div>
-              <p className="text-xs font-bold text-red-400">1. Não Distorcer</p>
-              <p className="text-[11px] text-stone-500">Nunca achate ou estique a proporção da marca.</p>
+              <p className="text-xs font-bold text-red-700">1. Não Distorcer</p>
+              <p className="text-[11px] text-stone-600">Nunca achate ou estique a proporção do logotipo.</p>
             </div>
 
             {/* Don't 2: Change Colors */}
-            <div className="p-6 bg-stone-900/90 border border-stone-800 space-y-3">
-              <div className="h-28 bg-stone-950 flex items-center justify-center p-3 relative overflow-hidden">
-                <div className="opacity-40">
-                  <BrandLogo variant="normal" colorMode="color" douradoColor="#9333ea" verdeMedioColor="#d97706" size="sm" />
-                </div>
-                <div className="absolute inset-0 bg-red-950/30 flex items-center justify-center">
-                  <div className="w-7 h-7 bg-red-600 text-white flex items-center justify-center">
-                    <X size={16} />
-                  </div>
-                </div>
+            <div className="p-5 bg-white text-stone-900 space-y-3 shadow-md relative">
+              <div className="absolute top-3 right-3 bg-red-600 text-white flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-bold uppercase shadow-sm">
+                <X size={12} />
+                <span>Proibido</span>
               </div>
-              <p className="text-xs font-bold text-red-400">2. Não Alterar Cores</p>
-              <p className="text-[11px] text-stone-500">Nunca aplique tons que não constem na paleta oficial.</p>
+              <div className="h-32 bg-stone-100 flex items-center justify-center p-3 overflow-hidden border border-stone-200">
+                <BrandLogo variant="horizontal" colorMode="color" douradoColor="#9333ea" verdeMedioColor="#d97706" size="md" />
+              </div>
+              <p className="text-xs font-bold text-red-700">2. Não Alterar Cores</p>
+              <p className="text-[11px] text-stone-600">Nunca aplique cores fora da paleta oficial.</p>
             </div>
 
             {/* Don't 3: Low Contrast Background */}
-            <div className="p-6 bg-stone-900/90 border border-stone-800 space-y-3">
-              <div className="h-28 bg-stone-700 flex items-center justify-center p-3 relative overflow-hidden">
-                <div className="opacity-30">
-                  <BrandLogo variant="normal" colorMode="color" size="sm" />
-                </div>
-                <div className="absolute inset-0 bg-red-950/30 flex items-center justify-center">
-                  <div className="w-7 h-7 bg-red-600 text-white flex items-center justify-center">
-                    <X size={16} />
-                  </div>
-                </div>
+            <div className="p-5 bg-white text-stone-900 space-y-3 shadow-md relative">
+              <div className="absolute top-3 right-3 bg-red-600 text-white flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-bold uppercase shadow-sm">
+                <X size={12} />
+                <span>Proibido</span>
               </div>
-              <p className="text-xs font-bold text-red-400">3. Fundo Sem Contraste</p>
-              <p className="text-[11px] text-stone-500">Nunca aplique a versão escura sobre fundos cinzas ou com ruído.</p>
+              <div className="h-32 bg-stone-600 flex items-center justify-center p-3 overflow-hidden border border-stone-500">
+                <BrandLogo variant="horizontal" colorMode="color" size="md" />
+              </div>
+              <p className="text-xs font-bold text-red-700">3. Fundo Sem Contraste</p>
+              <p className="text-[11px] text-stone-600">Nunca aplique sobre fundos sem contraste suficiente.</p>
             </div>
 
             {/* Don't 4: Rotate */}
-            <div className="p-6 bg-stone-900/90 border border-stone-800 space-y-3">
-              <div className="h-28 bg-stone-950 flex items-center justify-center p-3 relative overflow-hidden">
-                <div className="rotate-12 opacity-40">
-                  <BrandLogo variant="normal" colorMode="mono-white" size="sm" />
-                </div>
-                <div className="absolute inset-0 bg-red-950/30 flex items-center justify-center">
-                  <div className="w-7 h-7 bg-red-600 text-white flex items-center justify-center">
-                    <X size={16} />
-                  </div>
+            <div className="p-5 bg-white text-stone-900 space-y-3 shadow-md relative">
+              <div className="absolute top-3 right-3 bg-red-600 text-white flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-bold uppercase shadow-sm">
+                <X size={12} />
+                <span>Proibido</span>
+              </div>
+              <div className="h-32 bg-stone-100 flex items-center justify-center p-3 overflow-hidden border border-stone-200">
+                <div className="rotate-12">
+                  <BrandLogo variant="horizontal" colorMode="color" size="md" />
                 </div>
               </div>
-              <p className="text-xs font-bold text-red-400">4. Não Rotacionar</p>
-              <p className="text-[11px] text-stone-500">A marca deve estar invariavelmente no eixo horizontal 0°.</p>
+              <p className="text-xs font-bold text-red-700">4. Não Rotacionar</p>
+              <p className="text-[11px] text-stone-600">A marca deve estar invariavelmente no eixo horizontal 0°.</p>
             </div>
 
           </div>

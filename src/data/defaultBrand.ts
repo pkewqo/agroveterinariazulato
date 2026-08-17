@@ -11,8 +11,9 @@ export const ZULATO_BRAND: BrandState = {
   archetypeDescription: 'Uma marca sólida, tradicional e de alta proximidade técnica com produtores e tutores de pets.',
   
   logos: {
-    transparentUrl: '/assets/new-logo-transparent.png',
-    activeVariant: 'normal',
+    horizontalUrl: '/assets/new-logo-horizontal.png',
+    verticalUrl: '/assets/new-logo-transparent.png',
+    activeVariant: 'horizontal',
     clearSpaceRatio: 1.0,
     minDigitalSizePx: 32,
     minPrintSizeMm: 18,

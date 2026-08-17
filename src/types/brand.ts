@@ -21,8 +21,9 @@ export interface TypographyToken {
 }
 
 export interface BrandLogos {
-  transparentUrl: string;
-  activeVariant: 'normal' | 'symbol';
+  horizontalUrl: string;
+  verticalUrl: string;
+  activeVariant: 'horizontal' | 'vertical' | 'symbol';
   clearSpaceRatio: number;
   minDigitalSizePx: number;
   minPrintSizeMm: number;

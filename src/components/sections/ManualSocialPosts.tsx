@@ -18,10 +18,10 @@ export const ManualSocialPosts: React.FC = () => {
               Seção 06
             </span>
             <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-              Aplicações para Redes Sociais (Posts 1350 × 1350)
+              Aplicações para Redes Sociais (Posts 1080 × 1350)
             </h2>
             <p className="text-xs text-stone-500 font-mono">
-              Especialidade: Animais de Grande Porte (Bovinos/Equinos) & Linha Pet Completa
+              Formato Feed Vertical 4:5 • Especialidade: Grande Porte & Linha Pet Completa
             </p>
           </div>
 
@@ -44,18 +44,18 @@ export const ManualSocialPosts: React.FC = () => {
           </div>
         </div>
 
-        {/* 3 Square Posts Grid (1350x1350 format / 1:1 Aspect Ratio) */}
+        {/* 3 Vertical Posts Grid (1080x1350 format / 4:5 Aspect Ratio) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* POST 1: Animais de Grande Porte (Bovinos & Equinos) */}
           <div className="space-y-3">
             <div className="flex justify-between items-center text-[11px] font-mono text-stone-500">
               <span className="font-bold uppercase text-stone-800">Post 01 • Grande Porte</span>
-              <span>1350 × 1350 px</span>
+              <span className="font-bold text-emerald-800">1080 × 1350 px (4:5)</span>
             </div>
 
             <div 
-              className="w-full aspect-square p-8 sm:p-10 flex flex-col justify-between shadow-xs transition-colors relative overflow-hidden"
+              className="w-full aspect-[4/5] p-8 sm:p-10 flex flex-col justify-between shadow-xs transition-colors relative overflow-hidden"
               style={{ backgroundColor: brand.colors.verdeEscuro.hex }}
             >
               {/* Header Badge */}
@@ -72,7 +72,7 @@ export const ManualSocialPosts: React.FC = () => {
               </div>
 
               {/* Central Copy */}
-              <div className="space-y-4 my-auto py-4">
+              <div className="space-y-5 my-auto py-6">
                 <h3 
                   className="text-2xl sm:text-3xl font-normal leading-[1.08] text-white uppercase tracking-wide"
                   style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
@@ -89,20 +89,20 @@ export const ManualSocialPosts: React.FC = () => {
                 </p>
 
                 <div 
-                  className="pt-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider"
+                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider"
                   style={{ 
                     color: brand.colors.dourado.hex,
                     fontFamily: `"${brand.typography.body.family}", sans-serif` 
                   }}
                 >
-                  <Sparkles size={13} />
+                  <Sparkles size={14} />
                   <span>Resultados comprovados na balança</span>
                 </div>
               </div>
 
               {/* Footer */}
               <div className="pt-4 border-t border-white/10 flex justify-between items-end">
-                <BrandLogo variant="normal" colorMode="color" size="sm" />
+                <BrandLogo variant="horizontal" colorMode="color" size="sm" />
                 <div className="text-right text-[10px] font-mono text-emerald-100">
                   <p className="font-bold">{brand.socialHandles.phone}</p>
                   <p>{brand.socialHandles.location}</p>
@@ -115,11 +115,11 @@ export const ManualSocialPosts: React.FC = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center text-[11px] font-mono text-stone-500">
               <span className="font-bold uppercase text-stone-800">Post 02 • Linha Pet</span>
-              <span>1350 × 1350 px</span>
+              <span className="font-bold text-emerald-800">1080 × 1350 px (4:5)</span>
             </div>
 
             <div 
-              className="w-full aspect-square p-8 sm:p-10 flex flex-col justify-between shadow-xs bg-stone-50 border border-stone-200 relative overflow-hidden"
+              className="w-full aspect-[4/5] p-8 sm:p-10 flex flex-col justify-between shadow-xs bg-stone-50 border border-stone-200 relative overflow-hidden"
             >
               {/* Header Badge */}
               <div className="flex justify-between items-center border-b border-stone-200 pb-4">
@@ -138,7 +138,7 @@ export const ManualSocialPosts: React.FC = () => {
               </div>
 
               {/* Central Copy */}
-              <div className="space-y-4 my-auto py-4">
+              <div className="space-y-5 my-auto py-6">
                 <h3 
                   className="text-2xl sm:text-3xl font-normal leading-[1.08] text-stone-900 uppercase tracking-wide"
                   style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
@@ -155,7 +155,7 @@ export const ManualSocialPosts: React.FC = () => {
                 </p>
 
                 <div 
-                  className="pt-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-stone-800"
+                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-800"
                   style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
                 >
                   <span>★ Atendimento especializado em Dracena</span>
@@ -164,7 +164,7 @@ export const ManualSocialPosts: React.FC = () => {
 
               {/* Footer */}
               <div className="pt-4 border-t border-stone-200 flex justify-between items-end">
-                <BrandLogo variant="normal" colorMode="color" size="sm" />
+                <BrandLogo variant="horizontal" colorMode="color" size="sm" />
                 <div className="text-right text-[10px] font-mono text-stone-600">
                   <p className="font-bold text-stone-900">{brand.socialHandles.phone}</p>
                   <p>Fernando Zulato • Proprietário</p>
@@ -177,11 +177,11 @@ export const ManualSocialPosts: React.FC = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center text-[11px] font-mono text-stone-500">
               <span className="font-bold uppercase text-stone-800">Post 03 • Institucional</span>
-              <span>1350 × 1350 px</span>
+              <span className="font-bold text-emerald-800">1080 × 1350 px (4:5)</span>
             </div>
 
             <div 
-              className="w-full aspect-square p-8 sm:p-10 flex flex-col justify-between shadow-xs transition-colors relative overflow-hidden"
+              className="w-full aspect-[4/5] p-8 sm:p-10 flex flex-col justify-between shadow-xs transition-colors relative overflow-hidden"
               style={{ backgroundColor: brand.colors.pretoComplementar.hex }}
             >
               {/* Header Badge */}
@@ -201,7 +201,7 @@ export const ManualSocialPosts: React.FC = () => {
               </div>
 
               {/* Central Copy */}
-              <div className="space-y-4 my-auto py-4">
+              <div className="space-y-5 my-auto py-6">
                 <h3 
                   className="text-2xl sm:text-3xl font-normal leading-[1.08] text-white uppercase tracking-wide"
                   style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
@@ -218,7 +218,7 @@ export const ManualSocialPosts: React.FC = () => {
                 </p>
 
                 <div 
-                  className="pt-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-emerald-400"
+                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400"
                   style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
                 >
                   <MapPin size={13} />
@@ -228,7 +228,7 @@ export const ManualSocialPosts: React.FC = () => {
 
               {/* Footer */}
               <div className="pt-4 border-t border-stone-800 flex justify-between items-end">
-                <BrandLogo variant="normal" colorMode="mono-white" size="sm" />
+                <BrandLogo variant="horizontal" colorMode="mono-white" size="sm" />
                 <div className="text-right text-[10px] font-mono text-stone-400">
                   <p className="font-bold text-white flex items-center justify-end gap-1">
                     <Phone size={11} className="text-emerald-400" />

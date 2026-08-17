@@ -3,7 +3,7 @@ import { useBrand } from '../context/BrandContext';
 import { recolorNewLogo } from '../utils/logoColorFilter';
 
 export interface BrandLogoProps {
-  variant?: 'normal' | 'symbol';
+  variant?: 'horizontal' | 'vertical' | 'normal' | 'symbol';
   colorMode?: 'color' | 'mono-black' | 'mono-white';
   douradoColor?: string;
   verdeMedioColor?: string;
@@ -15,7 +15,7 @@ export interface BrandLogoProps {
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
-  variant = 'normal',
+  variant = 'horizontal',
   colorMode = 'color',
   douradoColor,
   verdeMedioColor,
@@ -28,7 +28,11 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const { brand } = useBrand();
   const [renderedSrc, setRenderedSrc] = useState<string>('');
 
-  const srcToUse = brand.logos.transparentUrl;
+  const normalizedVariant = variant === 'normal' ? 'vertical' : variant;
+
+  const srcToUse = normalizedVariant === 'horizontal'
+    ? brand.logos.horizontalUrl
+    : brand.logos.verticalUrl;
 
   const effectiveDourado = douradoColor || brand.colors.dourado.hex;
   const effectiveVerdeMedio = verdeMedioColor || brand.colors.verdeMedio.hex;
@@ -42,7 +46,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       verdeMedioColor: effectiveVerdeMedio,
       monoBlackHex: effectiveMonoBlack,
       mode: colorMode,
-      symbolOnly: variant === 'symbol',
+      symbolOnly: normalizedVariant === 'symbol',
     }).then(resultDataUrl => {
       if (isMounted) {
         setRenderedSrc(resultDataUrl);
@@ -52,18 +56,18 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [srcToUse, effectiveDourado, effectiveVerdeMedio, effectiveMonoBlack, colorMode, variant]);
+  }, [srcToUse, effectiveDourado, effectiveVerdeMedio, effectiveMonoBlack, colorMode, normalizedVariant]);
 
   // Size styling
   const sizeClasses = customHeight
     ? ''
     : size === 'sm'
-      ? 'max-h-8 max-w-[120px]'
+      ? normalizedVariant === 'horizontal' ? 'max-h-7 max-w-[150px]' : 'max-h-8 max-w-[120px]'
       : size === 'md'
-        ? variant === 'symbol' ? 'max-h-20 max-w-[120px]' : 'max-h-24 max-w-[170px]'
+        ? normalizedVariant === 'horizontal' ? 'max-h-12 max-w-[240px]' : normalizedVariant === 'symbol' ? 'max-h-20 max-w-[120px]' : 'max-h-24 max-w-[170px]'
         : size === 'lg'
-          ? variant === 'symbol' ? 'max-h-28 max-w-[160px]' : 'max-h-36 max-w-[240px]'
-          : variant === 'symbol' ? 'max-h-36 max-w-[200px]' : 'max-h-48 max-w-[320px]';
+          ? normalizedVariant === 'horizontal' ? 'max-h-20 max-w-[360px]' : normalizedVariant === 'symbol' ? 'max-h-28 max-w-[160px]' : 'max-h-36 max-w-[240px]'
+          : normalizedVariant === 'horizontal' ? 'max-h-28 max-w-[480px]' : normalizedVariant === 'symbol' ? 'max-h-36 max-w-[200px]' : 'max-h-48 max-w-[320px]';
 
   return (
     <div 
