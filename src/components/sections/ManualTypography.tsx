@@ -5,94 +5,85 @@ import { POPULAR_GOOGLE_FONTS } from '../../utils/fontLoader';
 export const ManualTypography: React.FC = () => {
   const { brand, updateFont } = useBrand();
   const [sampleSentence, setSampleSentence] = useState(
-    'Agroveterinária Zulato: Excelência em nutrição, reprodução e sanidade animal no campo.'
+    'Agroveterinária Zulato: Especialistas em nutrição para animais de grande porte e linha pet completa em Dracena - SP.'
   );
 
   const hierarchy = [
-    { name: 'Display Principal', size: '48px', weight: 'Bold 700', sample: brand.brandName },
-    { name: 'Título de Seção (H1)', size: '32px', weight: 'SemiBold 600', sample: 'Soluções Integradas para Pecuária de Corte e Leite' },
-    { name: 'Subtítulo (H2)', size: '22px', weight: 'Medium 500', sample: 'Assessoria Veterinária & Manejo Nutricional de Alta Performance' },
-    { name: 'Corpo de Texto (Body)', size: '15px', weight: 'Regular 400', sample: 'O acompanhamento técnico constante assegura a produtividade e a saúde do rebanho em todas as fases da criação.' },
-    { name: 'Legenda / Código (Caption)', size: '12px', weight: 'Regular 400', isMono: true, sample: 'REF-LOTE: #AVZ-2026-SP • VALIDADE INDETERMINADA' },
+    { name: 'Display Principal (Impact)', size: '48px', weight: 'Normal / Bold', isHeadline: true, sample: brand.brandName },
+    { name: 'Título de Seção (Impact)', size: '32px', weight: 'Normal / Condensed', isHeadline: true, sample: 'NUTRIÇÃO BOVINA, EQUINOS & LINHA PET PREMIUM' },
+    { name: 'Subtítulo em Destaque', size: '20px', weight: 'SemiBold 600', isHeadline: false, sample: 'Assessoria Veterinária & Manejo Nutricional de Alta Performance' },
+    { name: 'Corpo de Texto (Arimo)', size: '15px', weight: 'Regular 400', isHeadline: false, sample: 'Dispomos de rações de alta digestibilidade, suplementos minerais, medicamentos veterinários e atendimento técnico personalizado.' },
+    { name: 'Legenda Técnica (Arimo)', size: '12px', weight: 'Medium 500', isHeadline: false, sample: 'PROPRIETÁRIO: FERNANDO ZULATO • DRACENA - SP' },
   ];
 
   return (
-    <section id="typography" className="py-20 bg-stone-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    <section id="typography" className="py-20 bg-stone-50 border-b border-stone-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Title */}
-        <div className="space-y-1">
-          <span className="text-xs font-mono font-bold text-stone-400 uppercase tracking-widest block">
-            Seção 04
+        <div className="border-b border-stone-300 pb-4 flex flex-wrap items-baseline justify-between gap-2">
+          <div className="space-y-1">
+            <span className="text-xs font-mono font-bold text-stone-400 uppercase tracking-widest block">
+              Seção 04
+            </span>
+            <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
+              Sistema Tipográfico Institucional
+            </h2>
+          </div>
+          <span className="text-xs font-mono text-stone-500">
+            Fonte Principal: Impact (Fixa) • Fonte Secundária: {brand.typography.body.family}
           </span>
-          <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-            Sistema Tipográfico Institucional
-          </h2>
-          <p className="text-xs text-stone-500 font-mono">
-            Espécime Tipográfico • Hierarquia de Corpos
-          </p>
         </div>
 
-        {/* 1. Primary & Secondary Families Grid */}
+        {/* 1. Primary (Impact) & Secondary (Arimo) Families */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          {/* Primary Family (Headlines) */}
-          <div className="p-8 sm:p-10 bg-white space-y-6">
-            <div className="flex justify-between items-start">
+          {/* Primary Family: Impact (Fixed) */}
+          <div className="p-8 bg-white space-y-6">
+            <div className="flex justify-between items-start border-b border-stone-200 pb-3">
               <div>
-                <span className="text-[10px] font-mono uppercase text-stone-400 font-bold block">
-                  Tipografia Primária (Títulos & Destaques)
+                <span className="text-[10px] font-mono uppercase text-emerald-800 font-bold block">
+                  Tipografia Principal (Títulos de Impacto & Chamadas)
                 </span>
                 <h3 
-                  className="text-2xl font-black text-stone-900 pt-1"
-                  style={{ fontFamily: `"${brand.typography.headline.family}", sans-serif` }}
+                  className="text-3xl font-normal text-stone-900 pt-1 tracking-wider uppercase"
+                  style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
                 >
-                  {brand.typography.headline.family}
+                  IMPACT (FONTE FIXA)
                 </h3>
               </div>
-
-              <select
-                aria-label="Selecionar Fonte Primária"
-                value={brand.typography.headline.family}
-                onChange={(e) => updateFont('headline', e.target.value)}
-                className="bg-stone-100 text-stone-800 text-xs px-2.5 py-1 font-sans no-print cursor-pointer outline-none"
-              >
-                {POPULAR_GOOGLE_FONTS.map(f => (
-                  <option key={f.family} value={f.family}>
-                    {f.family}
-                  </option>
-                ))}
-              </select>
+              <span className="text-[11px] font-mono font-bold bg-stone-100 px-2 py-1 text-stone-600">
+                Padrão Oficial
+              </span>
             </div>
 
             {/* Glyph Specimen */}
-            <div className="space-y-3 font-medium">
+            <div className="space-y-3">
               <p 
-                className="text-xl sm:text-2xl text-stone-800 tracking-wide break-all"
-                style={{ fontFamily: `"${brand.typography.headline.family}", sans-serif` }}
+                className="text-2xl sm:text-3xl text-stone-900 tracking-wide break-all"
+                style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
               >
                 ABCDEFGHIJKLMNOPQRSTUVWXYZ
               </p>
               <p 
-                className="text-lg sm:text-xl text-stone-700 tracking-wide break-all"
-                style={{ fontFamily: `"${brand.typography.headline.family}", sans-serif` }}
-              >
-                abcdefghijklmnopqrstuvwxyz
-              </p>
-              <p 
-                className="text-lg text-stone-600 font-mono"
+                className="text-xl sm:text-2xl text-stone-800 tracking-wide break-all"
+                style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
               >
                 0123456789 (.,:;!?@#$%&*+=-/_)
               </p>
             </div>
+
+            <p className="text-xs text-stone-500 font-mono">
+              Uso obrigatório em títulos de posts, capas de catálogos, chamadas promocionais e fachadas.
+            </p>
           </div>
 
-          {/* Secondary Family (Body) */}
-          <div className="p-8 sm:p-10 bg-white space-y-6">
-            <div className="flex justify-between items-start">
+          {/* Secondary Family: Arimo (Configurable) */}
+          <div className="p-8 bg-white space-y-6">
+            <div className="flex justify-between items-start border-b border-stone-200 pb-3">
               <div>
-                <span className="text-[10px] font-mono uppercase text-stone-400 font-bold block">
-                  Tipografia Secundária (Texto & Leitura Longa)
+                <span className="text-[10px] font-mono uppercase text-stone-500 font-bold block">
+                  Tipografia Secundária (Texto, Redes Sociais & Leitura)
                 </span>
                 <h3 
                   className="text-2xl font-bold text-stone-900 pt-1"
@@ -106,7 +97,7 @@ export const ManualTypography: React.FC = () => {
                 aria-label="Selecionar Fonte Secundária"
                 value={brand.typography.body.family}
                 onChange={(e) => updateFont('body', e.target.value)}
-                className="bg-stone-100 text-stone-800 text-xs px-2.5 py-1 font-sans no-print cursor-pointer outline-none"
+                className="bg-stone-100 border border-stone-300 text-stone-800 text-xs px-2.5 py-1 font-sans no-print cursor-pointer outline-none"
               >
                 {POPULAR_GOOGLE_FONTS.map(f => (
                   <option key={f.family} value={f.family}>
@@ -119,20 +110,23 @@ export const ManualTypography: React.FC = () => {
             {/* Paragraph Specimen */}
             <div className="space-y-3 text-stone-700 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}>
               <p>
-                A <strong>{brand.brandName}</strong> adota uma tipografia de linhas limpas e alta legibilidade,
-                ideal para contratos, rótulos de suplementação, laudos laboratoriais e comunicação corporativa.
+                A <strong>{brand.brandName}</strong> utiliza a tipografia <strong>{brand.typography.body.family}</strong> para toda a comunicação técnica, posts de redes sociais, bulas e descrições de produtos tanto para <strong>animais de grande porte</strong> quanto para a <strong>linha pet</strong>.
               </p>
               <p className="text-stone-500 italic">
-                "A excelência no manejo pecuário começa na precisão das informações fornecidas ao produtor."
+                "Excelência, nutrição e carinho na criação de grandes animais e cuidados pet."
               </p>
             </div>
+
+            <p className="text-xs text-stone-400 font-mono">
+              Fonte do Google Fonts selecionável com reflexo instantâneo nos posts de redes sociais e documentos.
+            </p>
           </div>
 
         </div>
 
         {/* 2. Typographic Scale Hierarchy */}
-        <div className="p-8 sm:p-10 bg-white space-y-6">
-          <div className="flex flex-wrap items-center justify-between pb-3 gap-2">
+        <div className="p-8 bg-white space-y-6">
+          <div className="flex flex-wrap items-center justify-between border-b border-stone-200 pb-3 gap-2">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-stone-900">
               4.2 Escala de Corpos & Hierarquia Visual
             </h4>
@@ -144,22 +138,19 @@ export const ManualTypography: React.FC = () => {
                 type="text"
                 value={sampleSentence}
                 onChange={(e) => setSampleSentence(e.target.value)}
-                className="px-2.5 py-1 bg-stone-50 text-xs text-stone-800 w-64 outline-none"
+                className="px-2.5 py-1 bg-stone-50 border border-stone-300 text-xs text-stone-800 w-72 outline-none"
               />
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 divide-y divide-stone-200">
             {hierarchy.map((item, idx) => {
-              const fontFam = item.isMono 
-                ? `"${brand.typography.mono.family}", monospace`
-                : idx < 3 
-                  ? `"${brand.typography.headline.family}", sans-serif` 
-                  : `"${brand.typography.body.family}", sans-serif`;
+              const fontFam = item.isHeadline
+                ? 'Impact, "Arial Black", sans-serif'
+                : `"${brand.typography.body.family}", sans-serif`;
 
               return (
-                <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-baseline">
-                  
+                <div key={idx} className="pt-6 first:pt-0 grid grid-cols-1 lg:grid-cols-12 gap-4 items-baseline">
                   <div className="lg:col-span-3 text-xs font-mono text-stone-500 space-y-0.5">
                     <span className="font-bold text-stone-900 block">{item.name}</span>
                     <span>Corpo: {item.size} • {item.weight}</span>
@@ -172,12 +163,13 @@ export const ManualTypography: React.FC = () => {
                         fontSize: item.size,
                         fontFamily: fontFam,
                         lineHeight: '1.2',
+                        textTransform: item.isHeadline ? 'uppercase' : 'none',
+                        letterSpacing: item.isHeadline ? '0.05em' : 'normal',
                       }}
                     >
                       {sampleSentence || item.sample}
                     </p>
                   </div>
-
                 </div>
               );
             })}

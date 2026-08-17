@@ -12,6 +12,7 @@ export const ManualHeader: React.FC = () => {
     { id: 'grid', label: '03. Área de Proteção' },
     { id: 'typography', label: '04. Tipografia' },
     { id: 'stationery', label: '05. Papelaria' },
+    { id: 'social-posts', label: '06. Redes Sociais' },
   ];
 
   return (
@@ -26,9 +27,6 @@ export const ManualHeader: React.FC = () => {
           <div className="hidden md:block border-l border-stone-300 pl-3">
             <span className="text-xs font-bold uppercase tracking-widest text-stone-900 block">
               Manual de Identidade Visual
-            </span>
-            <span className="text-[10px] text-stone-500 font-mono">
-              30 Anos de História • Edição Oficial 2026
             </span>
           </div>
         </div>

@@ -2,13 +2,13 @@ import type { BrandState, BrandPreset } from '../types/brand';
 
 export const ZULATO_BRAND: BrandState = {
   brandName: 'Agroveterinária Zulato',
-  tagline: '30 anos de história a serviço do homem do campo e da pecuária de alta performance.',
+  tagline: '30 anos de história a serviço do homem do campo, pecuária de grande porte e saúde pet.',
   established: '1996 (30 anos de história)',
-  category: 'Agropecuária & Medicina Veterinária',
-  mission: 'Impulsionar a produtividade, a nutrição e o bem-estar animal com assessoria técnica de excelência, insumos de alta qualidade e o compromisso de quem tem 30 anos de tradição ao lado do produtor rural.',
-  vision: 'Ser a principal referência em confiança, tecnologia veterinária e parceria pecuária na região de Dracena e em todo o estado de São Paulo.',
-  archetype: 'O Protetor & O Especialista',
-  archetypeDescription: 'Uma marca sólida, tradicional e altamente técnica, que transmite a segurança de mais de 3 décadas de história no campo.',
+  category: 'Animais de Grande Porte & Linha Pet',
+  mission: 'Oferecer soluções completas em nutrição animal, medicamentos veterinários, suplementação para grandes animais (bovinos e equinos) e cuidados especiais para a linha pet, com tradição e confiança.',
+  vision: 'Ser a principal referência em suprimentos agropecuários e produtos pet na região de Dracena e todo o Oeste Paulista.',
+  archetype: 'O Especialista & O Protetor',
+  archetypeDescription: 'Uma marca sólida, tradicional e de alta proximidade técnica com produtores e tutores de pets.',
   
   logos: {
     transparentUrl: '/assets/new-logo-transparent.png',
@@ -31,7 +31,7 @@ export const ZULATO_BRAND: BrandState = {
       name: 'Verde Folha',
       role: 'Monograma AV (Símbolo)',
       hex: '#50723B',
-      description: 'Cor do monograma AV, representando a vitalidade da lavoura e a sanidade das pastagens.',
+      description: 'Cor do monograma AV, representando a vitalidade da pastagem e a saúde animal.',
     },
     verdeEscuro: {
       id: 'verdeEscuro',
@@ -51,16 +51,16 @@ export const ZULATO_BRAND: BrandState = {
 
   typography: {
     headline: {
-      family: 'Montserrat',
-      weights: [700, 800, 900],
-      category: 'sans-serif',
-      usage: 'Títulos de impacto, embalagens de suplementos, fachadas e catálogos.',
+      family: 'Impact',
+      weights: [700, 900],
+      category: 'display',
+      usage: 'Títulos de impacto, chamadas de posts, promoções, fachadas e capas de catálogos.',
     },
     body: {
-      family: 'Plus Jakarta Sans',
+      family: 'Arimo',
       weights: [400, 500, 600, 700],
       category: 'sans-serif',
-      usage: 'Artigos técnicos, bulas, contratos de consultoria, receituários e comunicação.',
+      usage: 'Corpo de texto, descrições de produtos para grande porte e pets, receitas e tabelas.',
     },
     mono: {
       family: 'JetBrains Mono',
@@ -68,7 +68,7 @@ export const ZULATO_BRAND: BrandState = {
       category: 'monospace',
       usage: 'Códigos de lote, dosagens veterinárias, dados analíticos e tabelas nutricionais.',
     },
-    customSampleText: 'Agroveterinária Zulato: 30 anos de história e parceria com o produtor rural em Dracena - SP.',
+    customSampleText: 'Agroveterinária Zulato: Especialistas em nutrição para grandes animais e linha pet completa.',
   },
 
   toneOfVoice: {
@@ -76,22 +76,22 @@ export const ZULATO_BRAND: BrandState = {
       {
         id: 'tone-1',
         labelLeft: 'Tradição (30 anos)',
-        labelRight: 'Inovação Tecnológica',
+        labelRight: 'Inovação & Cuidado',
         value: 65,
-        description: 'Equilíbrio que valoriza a experiência comprovada no campo com respaldo científico agronômico.',
+        description: 'Equilíbrio que valoriza a experiência no campo com carinho e precisão para pets.',
       },
       {
         id: 'tone-2',
-        labelLeft: 'Formal / Técnico',
-        labelRight: 'Próximo / Acolhedor',
-        value: 80,
-        description: 'Linguagem clara, de produtor para produtor, com a proximidade de quem está presente no dia a dia.',
+        labelLeft: 'Técnico / Agro',
+        labelRight: 'Acolhedor / Pet',
+        value: 70,
+        description: 'Linguagem clara tanto para o pecuarista experiente quanto para o tutor de cães e gatos.',
       },
       {
         id: 'tone-3',
         labelLeft: 'Sóbrio & Seguro',
-        labelRight: 'Dinâmico & Enérgico',
-        value: 40,
+        labelRight: 'Dinâmico & Próximo',
+        value: 50,
         description: 'Foco na segurança veterinária, consistência de resultados e integridade.',
       },
       {
@@ -99,20 +99,16 @@ export const ZULATO_BRAND: BrandState = {
         labelLeft: 'Acessível',
         labelRight: 'Alta Performance',
         value: 75,
-        description: 'Posicionamento de alto valor agregado com retorno comprovado para a fazenda.',
+        description: 'Produtos de primeira linha e assessoria personalizada.',
       },
     ],
     rules: [
       {
-        doText: 'Demonstrar respeito à lida no campo, valorizando o tempo e o trabalho do produtor rural.',
-        dontText: 'Usar termos pejorativos ou subestimar o conhecimento prático de quem vive no campo.',
-      },
-      {
-        doText: 'Destacar os 30 anos de solidez e credibilidade construídos em Dracena e região.',
-        dontText: 'Prometer resultados sem fundamentação veterinária e zootécnica adequada.',
+        doText: 'Orientar com clareza sobre o manejo de grandes animais e cuidados com a saúde dos pets.',
+        dontText: 'Indicar dosagens ou medicamentos sem especificação técnica adequada.',
       },
     ],
-    keywords: ['30 Anos de História', 'Dracena SP', 'Saúde Animal', 'Nutrição Bovina', 'Confiança', 'Tradição'],
+    keywords: ['30 Anos de História', 'Dracena SP', 'Grande Porte', 'Linha Pet', 'Saúde Animal', 'Fernando Zulato'],
   },
 
   socialHandles: {
@@ -126,8 +122,8 @@ export const ZULATO_BRAND: BrandState = {
 export const BRAND_PRESETS: BrandPreset[] = [
   {
     id: 'zulato',
-    name: 'Agroveterinária Zulato (Oficial)',
-    description: '30 anos de história em Dracena - SP • Nova Identidade Visual.',
+    name: 'Agroveterinária Zulato',
+    description: 'Grande Porte & Linha Pet • Dracena - SP.',
     state: ZULATO_BRAND,
   },
 ];

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useBrand } from '../../context/BrandContext';
 import { hexToRgb, rgbToCmyk } from '../../utils/colorMath';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check, RotateCcw } from 'lucide-react';
 
 export const ManualColors: React.FC = () => {
-  const { brand, updateColor } = useBrand();
+  const { brand, updateColor, resetToDefault } = useBrand();
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleCopy = (text: string, key: string) => {
@@ -47,17 +47,28 @@ export const ManualColors: React.FC = () => {
     <section id="colors" className="py-20 bg-white border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        {/* Section Title */}
-        <div className="space-y-1">
-          <span className="text-xs font-mono font-bold text-stone-400 uppercase tracking-widest block">
-            Seção 01
-          </span>
-          <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-            Paleta de Cores Institucional
-          </h2>
-          <p className="text-xs text-stone-500 font-mono">
-            4 Cores Oficiais • Dourado Trigo • Verde Folha • Verde Floresta • Preto Carvão
-          </p>
+        {/* Section Title with Reset Button */}
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-stone-200 pb-4">
+          <div className="space-y-1">
+            <span className="text-xs font-mono font-bold text-stone-400 uppercase tracking-widest block">
+              Seção 01
+            </span>
+            <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
+              Paleta de Cores Institucional
+            </h2>
+            <p className="text-xs text-stone-500 font-mono">
+              4 Cores Oficiais • Dourado Trigo • Verde Folha • Verde Floresta • Preto Carvão
+            </p>
+          </div>
+
+          <button
+            onClick={resetToDefault}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-mono transition-colors cursor-pointer border border-stone-300 no-print"
+            title="Restaurar valores padrão oficiais da paleta"
+          >
+            <RotateCcw size={13} />
+            <span>Restaurar Cores Padrão</span>
+          </button>
         </div>
 
         {/* Unified 4-Color Swatch Row */}
@@ -83,7 +94,7 @@ export const ManualColors: React.FC = () => {
                     title={`Clique para alterar a cor ${color.name}`}
                   />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 bg-black/40 text-white">
-                    Editar Cor
+                    Clique para Editar
                   </span>
                 </div>
 

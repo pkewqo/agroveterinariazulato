@@ -18,7 +18,7 @@ export const ManualStationery: React.FC = () => {
             Papelaria Corporativa & Aplicações Gráficas
           </h2>
           <p className="text-xs text-stone-500 font-mono">
-            Cartão de Visita • Papel Timbrado A4 • 30 Anos de História
+            Cartão de Visita • Papel Timbrado A4 • Fernando Zulato (Proprietário)
           </p>
         </div>
 
@@ -58,17 +58,20 @@ export const ManualStationery: React.FC = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <p className="text-base font-bold text-stone-900 leading-tight">
-                    Dr. Marcos Zulato
-                  </p>
-                  <p className="text-xs text-stone-600 font-medium">
-                    Médico Veterinário & Responsável Técnico
+                  <p 
+                    className="text-lg font-bold text-stone-900 leading-tight uppercase tracking-wide"
+                    style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
+                  >
+                    Fernando Zulato
                   </p>
                   <p 
-                    className="text-[11px] font-mono font-bold"
+                    className="text-xs font-semibold"
                     style={{ color: brand.colors.verdeMedio.hex }}
                   >
-                    CRMV-SP 18.420 • Nutrição & Sanidade Animal
+                    Proprietário
+                  </p>
+                  <p className="text-[11px] font-mono text-stone-500">
+                    Grandes Animais & Linha Pet • Dracena - SP
                   </p>
                 </div>
 
@@ -138,7 +141,7 @@ export const ManualStationery: React.FC = () => {
                   className="text-[10px] font-mono font-bold mt-1 uppercase"
                   style={{ color: brand.colors.verdeMedio.hex }}
                 >
-                  30 anos de história! • {brand.category}
+                  Grandes Animais & Linha Pet • 30 anos de tradição
                 </p>
               </div>
               <div className="text-right text-[10px] font-mono text-stone-600 space-y-0.5">
@@ -154,32 +157,38 @@ export const ManualStationery: React.FC = () => {
             </div>
 
             {/* Letterhead Dummy Body */}
-            <div className="space-y-4 text-xs text-stone-700 leading-relaxed min-h-[140px]">
+            <div 
+              className="space-y-4 text-xs text-stone-700 leading-relaxed min-h-[140px]"
+              style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
+            >
               <div className="flex justify-between text-[11px] font-semibold text-stone-900 pb-2 border-b border-stone-200">
-                <span>DESTINATÁRIO: Agropecuária & Produtores Rurais Associados</span>
+                <span>DESTINATÁRIO: Clientes, Produtores e Tutores de Pets</span>
                 <span>DATA: 17 de Agosto de 2026</span>
               </div>
               
-              <h5 className="text-base font-bold text-stone-900 pt-2">
-                Parecer Técnico & Diretrizes Sanitárias de Manejo
+              <h5 
+                className="text-lg font-bold text-stone-900 pt-2 uppercase tracking-wide"
+                style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
+              >
+                Declaração de Conformidade Técnica & Fornecimento
               </h5>
 
               <p>
-                Atestamos para os devidos fins que os procedimentos de consultoria zootécnica e os insumos fornecidos pela <strong>{brand.brandName}</strong> atendem rigorosamente aos padrões de qualidade farmacêutica, pureza mineral e conformidade veterinária, respaldados por <strong>30 anos de história e tradição em Dracena e região</strong>.
+                Atestamos que os suprimentos minerais, rações balanceadas de alta digestibilidade, medicamentos e acessórios fornecidos pela <strong>{brand.brandName}</strong> atendem aos mais rigorosos padrões de qualidade e segurança tanto para <strong>animais de grande porte (bovinos e equinos)</strong> quanto para <strong>animais de companhia (cães e gatos)</strong>.
               </p>
 
               <div className="p-4 bg-white space-y-1 font-mono text-[11px]">
-                <p className="font-bold text-stone-900">RECOMENDAÇÃO TÉCNICA OFICIAL:</p>
-                <p>1. Suplementação balanceada com controle de ganho de peso diário (GMD).</p>
-                <p>2. Manejo preventivo e sanitário certificado.</p>
+                <p className="font-bold text-stone-900">LINHAS DE ESPECIALIDADE ATENDIDAS:</p>
+                <p>1. Suplementação, vacinas e nutrição intensiva para bovinos de corte/leite e equinos.</p>
+                <p>2. Linha Pet completa: rações super premium, farmácia veterinária e banho & tosa.</p>
               </div>
             </div>
 
             {/* Letterhead Footer */}
             <div className="pt-6 flex justify-between items-end text-[10px] text-stone-500 font-mono border-t border-stone-200">
               <div>
-                <p className="font-bold text-stone-900">Dr. Marcos Zulato</p>
-                <p>CRMV-SP 18.420 • Responsável Técnico</p>
+                <p className="font-bold text-stone-900">Fernando Zulato</p>
+                <p>Proprietário</p>
               </div>
               <div className="text-right">
                 <p>{brand.socialHandles.location} • {brand.socialHandles.phone}</p>
