@@ -73,33 +73,33 @@ export const ManualHero: React.FC = () => {
 
           <div className="md:col-span-5 grid grid-cols-2 gap-4 text-xs font-mono">
             
-            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+            <div className="p-4 space-y-1">
               <span className="text-stone-500 uppercase flex items-center gap-1">
-                <Award size={12} className="text-emerald-400" />
+                <Award size={12} className="text-white" />
                 <span>Tradição</span>
               </span>
               <p className="font-bold text-stone-200">30 anos de história!</p>
               <p className="text-[10px] text-stone-400">Desde 1996 em Dracena</p>
             </div>
 
-            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+            <div className="p-4 space-y-1">
               <span className="text-stone-500 uppercase flex items-center gap-1">
-                <MapPin size={12} className="text-emerald-400" />
+                <MapPin size={12} className="text-white" />
                 <span>Localização</span>
               </span>
               <p className="font-bold text-stone-200">Dracena - SP</p>
               <p className="text-[10px] text-stone-400">Av. Presidente Roosevelt, 452</p>
             </div>
 
-            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+            <div className="p-4 space-y-1">
               <span className="text-stone-500 uppercase">Especialidade</span>
               <p className="font-bold text-stone-200">Grande Porte & Pets</p>
               <p className="text-[10px] text-stone-400">Nutrição, Medicamentos & Rações</p>
             </div>
 
-            <div className="p-4 bg-stone-900/80 border border-stone-800 space-y-1">
+            <div className="p-4 space-y-1">
               <span className="text-stone-500 uppercase flex items-center gap-1">
-                <Phone size={12} className="text-emerald-400" />
+                <Phone size={12} className="text-white" />
                 <span>Atendimento</span>
               </span>
               <p className="font-bold text-stone-200">{brand.socialHandles.phone}</p>

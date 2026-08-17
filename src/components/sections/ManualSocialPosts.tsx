@@ -2,7 +2,7 @@ import React from 'react';
 import { useBrand } from '../../context/BrandContext';
 import { BrandLogo } from '../BrandLogo';
 import { POPULAR_GOOGLE_FONTS } from '../../utils/fontLoader';
-import { Type, Sparkles, MapPin, Phone } from 'lucide-react';
+import { Type, Phone } from 'lucide-react';
 
 export const ManualSocialPosts: React.FC = () => {
   const { brand, updateFont } = useBrand();
@@ -88,16 +88,6 @@ export const ManualSocialPosts: React.FC = () => {
                   Suplementos minerais, núcleos, rações de alto ganho de peso e vacinas com suporte técnico de quem tem <strong>30 anos de história no campo</strong>.
                 </p>
 
-                <div 
-                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider"
-                  style={{ 
-                    color: brand.colors.dourado.hex,
-                    fontFamily: `"${brand.typography.body.family}", sans-serif` 
-                  }}
-                >
-                  <Sparkles size={14} />
-                  <span>Resultados comprovados na balança</span>
-                </div>
               </div>
 
               {/* Footer */}
@@ -105,7 +95,6 @@ export const ManualSocialPosts: React.FC = () => {
                 <BrandLogo variant="horizontal" colorMode="color" size="sm" />
                 <div className="text-right text-[10px] font-mono text-emerald-100">
                   <p className="font-bold">{brand.socialHandles.phone}</p>
-                  <p>{brand.socialHandles.location}</p>
                 </div>
               </div>
             </div>
@@ -154,12 +143,6 @@ export const ManualSocialPosts: React.FC = () => {
                   Rações Super Premium, vermífugos, petiscos e medicamentos veterinários das melhores marcas para a alegria e longevidade do seu melhor amigo.
                 </p>
 
-                <div 
-                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-800"
-                  style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
-                >
-                  <span>★ Atendimento especializado em Dracena</span>
-                </div>
               </div>
 
               {/* Footer */}
@@ -167,7 +150,6 @@ export const ManualSocialPosts: React.FC = () => {
                 <BrandLogo variant="horizontal" colorMode="color" size="sm" />
                 <div className="text-right text-[10px] font-mono text-stone-600">
                   <p className="font-bold text-stone-900">{brand.socialHandles.phone}</p>
-                  <p>Fernando Zulato • Proprietário</p>
                 </div>
               </div>
             </div>
@@ -201,7 +183,7 @@ export const ManualSocialPosts: React.FC = () => {
               </div>
 
               {/* Central Copy */}
-              <div className="space-y-5 my-auto py-6">
+              <div className="space-y-5 mb-auto mt-8 py-6">
                 <h3 
                   className="text-2xl sm:text-3xl font-normal leading-[1.08] text-white uppercase tracking-wide"
                   style={{ fontFamily: 'Impact, "Arial Black", sans-serif' }}
@@ -217,13 +199,6 @@ export const ManualSocialPosts: React.FC = () => {
                   De grandes fazendas ao animalzinho da família: conte com a tradição, seriedade e variedade da <strong>Agroveterinária Zulato</strong>.
                 </p>
 
-                <div 
-                  className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400"
-                  style={{ fontFamily: `"${brand.typography.body.family}", sans-serif` }}
-                >
-                  <MapPin size={13} />
-                  <span>Av. Presidente Roosevelt, 452 • Dracena</span>
-                </div>
               </div>
 
               {/* Footer */}
@@ -234,7 +209,6 @@ export const ManualSocialPosts: React.FC = () => {
                     <Phone size={11} className="text-emerald-400" />
                     <span>{brand.socialHandles.phone}</span>
                   </p>
-                  <p>Fernando Zulato</p>
                 </div>
               </div>
             </div>
